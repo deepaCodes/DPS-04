@@ -5,6 +5,8 @@ This project is developed for practicing the Extreme Programming (XP) and Scrum 
 Teammates:
 
 Pooja Kamat
+
 Shubham Gupta
+
 Deepa Aswathaiah
 
