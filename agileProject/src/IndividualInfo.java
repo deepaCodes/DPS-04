@@ -5,87 +5,87 @@ import java.util.List;
 
 public class IndividualInfo {
 	private String id;
-	private String name;
-	private String Gender;
-	private Date birth;
-	private boolean alive;
-	private Date death;
-	
-	private List<String> childFamilyList = new ArrayList<String>();
-	private List<String> spouseFamilyList = new ArrayList<>();
-	
-	
-	public IndividualInfo() {
-		alive=true;
-	}
-	
-	
-	
+    private String name;
+    private String Gender;
+    private Date birth;
+    private boolean alive;
+    private Date death;
 
-	public List<String> getChildFamilyList() {
-		return childFamilyList;
-	}
+    private List<String> childFamilyList = new ArrayList<String>();
+    private List<String> spouseFamilyList = new ArrayList<>();
 
-	public void setChildFamilyList(List<String> childFamilyList) {
-		this.childFamilyList = childFamilyList;
-	}
 
-	public List<String> getSpouseFamilyList() {
-		return spouseFamilyList;
-	}
+    public IndividualInfo() {
+        alive=true;
+    }
 
-	public void setSpouseFamilyList(List<String> spouseFamilyList) {
-		this.spouseFamilyList = spouseFamilyList;
-	}
 
-	
 
-	public String getId() {
-		return id;
-	}
 
-	public void setId(String id) {
-		this.id = id;
-	}
+    public List<String> getChildFamilyList() {
+        return childFamilyList;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public void setChildFamilyList(List<String> childFamilyList) {
+        this.childFamilyList = childFamilyList;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public List<String> getSpouseFamilyList() {
+        return spouseFamilyList;
+    }
 
-	public String getGender() {
-		return Gender;
-	}
+    public void setSpouseFamilyList(List<String> spouseFamilyList) {
+        this.spouseFamilyList = spouseFamilyList;
+    }
 
-	public void setGender(String gender) {
-		Gender = gender;
-	}
 
-	public Date getBirth() {
-		return birth;
-	}
 
-	public void setBirth(Date birth) {
-		this.birth = birth;
-	}
+    public String getId() {
+        return id;
+    }
 
-	public boolean isAlive() {
-		return alive;
-	}
+    public void setId(String id) {
+        this.id = id;
+    }
 
-	public void setAlive(boolean alive) {
-		this.alive = alive;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public Date getDeath() {
-		return death;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setDeath(Date death) {
-		this.death = death;
-	}
-	
+    public String getGender() {
+        return Gender;
+    }
+
+    public void setGender(String gender) {
+        Gender = gender;
+    }
+
+    public Date getBirth() {
+        return birth;
+    }
+
+    public void setBirth(Date birth) {
+        this.birth = birth;
+    }
+
+    public boolean isAlive() {
+        return alive;
+    }
+
+    public void setAlive(boolean alive) {
+        this.alive = alive;
+    }
+
+    public Date getDeath() {
+        return death;
+    }
+
+    public void setDeath(Date death) {
+        this.death = death;
+    }
+
 }
