@@ -199,7 +199,11 @@ public class FileParser {
 
 	            //check marriage before divorce
 	            checkMarriageBeforeDivorce(fa.getValue());
-
+				
+				checkMarriageBeforeBirth(fa.getValue());
+				//checkDeathBeforeBirth();
+	            checkDeathBeforeBirth(indiMap.get((fa.getValue().getWifeId())));
+	            checkDeathBeforeBirth(indiMap.get((fa.getValue().getHusbId())));
 
 	            System.out.print(husbName + "\t"
 	                    + wifeName + "\t"
@@ -229,7 +233,37 @@ public class FileParser {
 	            warnings.add("\nWARNING-- Death Date: "+individualInfo_.getBirth() +" of "+individualInfo_.getName()+" occurs after current date");
 	        }
 	    }
-
+		
+		private void checkMarriageBeforeBirth(FamInfo fa) 
+		{
+			Date marrDate = fa.getMarr();
+			if(marrDate!=null)
+			{
+				if(fa.getHusbId()!=null)
+				{
+					Date husBirth = indiMap.get(fa.getHusbId()).getBirth();
+					if(husBirth.after(marrDate))
+					{
+						warnings.add("\nWARNING-- Marriage Date of "+indiMap.get(fa.getHusbId()).getName()+" occurs before birth date");
+					}
+				}
+				if(fa.getWifeId()!=null)
+				{
+					Date wifeBirth = indiMap.get(fa.getWifeId()).getBirth();
+					if(wifeBirth.after(marrDate))
+					{
+						warnings.add("\nWARNING-- Marriage Date of "+indiMap.get(fa.getWifeId()).getName()+" occurs before birth date");
+					}
+				}
+			}
+		}
+		private void checkDeathBeforeBirth(IndividualInfo individualInfo_) 
+		 {
+	        if(individualInfo_.getDeath()!=null && individualInfo_.getBirth()!=null && individualInfo_.getBirth().after(individualInfo_.getDeath())){
+	            warnings.add("\nWARNING-- Birth Date: "+individualInfo_.getBirth() +" of "+individualInfo_.getName()+" occurs after death date");
+	        }
+	    }
+		
 	    public void displayindividualInfo(Map<String, FamInfo> fmap) {
 	        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
