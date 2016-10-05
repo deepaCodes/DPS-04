@@ -5,7 +5,7 @@ public class ParseMain {
 	public static void main(String[] args) {
 		// Change the path of file
 
-		 String path = "W:/GitHub-Work/DPS-04/agileProject/Sprint 1.ged";
+		 String path = "C://Users//pkama//OneDrive//Documents//GitHub//DPS-04//agileProject//Sprint 1.ged";
 
 	        FileParser fp = new FileParser(path);
 	        fp.parseFile();
