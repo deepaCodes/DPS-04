@@ -180,12 +180,12 @@ public class FileParser {
 	            //Sprint-1 check for Date before current date
 	            //check marriage date
 	            if(fa.getValue().getMarr()!=null && fa.getValue().getMarr().after(new Date())){
-	                warnings.add("\nWARNING-- Family Id:"+fa.getValue().getFid()+" has Marriage Date "+fa.getValue().getMarr() +" occurs after current date.");
+	                warnings.add("\nWARNING in US03-- Family Id:"+fa.getValue().getFid()+" has Marriage Date "+fa.getValue().getMarr() +" occurs after current date.");
 	            }
 
 	            //check divorce date
 	            if(fa.getValue().getDiv()!=null && fa.getValue().getDiv().after(new Date())){
-	                warnings.add("\nWARNING-- Family Id:"+fa.getValue().getFid()+" has Divorce Date "+fa.getValue().getDiv() +" occurs after current date.");
+	                warnings.add("\nWARNING in US03-- Family Id:"+fa.getValue().getFid()+" has Divorce Date "+fa.getValue().getDiv() +" occurs after current date.");
 
 	            }
 
@@ -217,20 +217,20 @@ public class FileParser {
 
 	    private void checkMarriageBeforeDivorce(FamInfo fa) {
 	        if( fa.getDiv()!=null && fa.getMarr()!=null && fa.getDiv().before(fa.getMarr())){
-	            warnings.add("\nWARNING-- Divorce Date: "+fa.getDiv() +" of family ID "+fa.getFid()+" occurs before marriage date:"+fa.getMarr());
+	            warnings.add("\nWARNING in US04-- Divorce Date: "+fa.getDiv() +" of family ID "+fa.getFid()+" occurs before marriage date:"+fa.getMarr());
 
 	        }
 	    }
 
 	    private void checkBirthDate(IndividualInfo individualInfo_) {
 	        if(individualInfo_.getDeath()!=null && individualInfo_.getBirth()!=null && individualInfo_.getBirth().after(individualInfo_.getDeath())){
-	            warnings.add("\nWARNING-- Birth Date: "+individualInfo_.getBirth() +" of "+individualInfo_.getName()+" occurs after current date");
+	            warnings.add("\nWARNING in US03-- Birth Date: "+individualInfo_.getBirth() +" of "+individualInfo_.getName()+" occurs after current date");
 	        }
 	    }
 
 	    private void checkDeathDate(IndividualInfo individualInfo_) {
 	        if(individualInfo_.getBirth()!=null && individualInfo_.getDeath()!=null && individualInfo_.getDeath().after(new Date())){
-	            warnings.add("\nWARNING-- Death Date: "+individualInfo_.getBirth() +" of "+individualInfo_.getName()+" occurs after current date");
+	            warnings.add("\nWARNING in US03-- Death Date: "+individualInfo_.getBirth() +" of "+individualInfo_.getName()+" occurs after current date");
 	        }
 	    }
 		
