@@ -1,0 +1,39 @@
+FAMILY INFORMATION
+
+Familyid	Married	Divorced	 Husband	Wife	Children
+F1	12/04/1985	Sam	Jeni	[I1]
+F2	06/05/2018	15/06/2017	Sam	Juliet	[I5]
+F3	06/05/1965	James	Cathy	[I2]
+F4	07/04/1963	James	Leni	[]
+
+WARNING--(US-22:Unique IDs) The person with id I1 already Exists
+
+WARNING--(US-21:Correct gender for role) Husband Gender of I2 belonging to family F1 cannot be female
+
+WARNING--(US-02:Birth before marriage) Marriage Date of Sam occurs before birth date
+
+WARNING--(US-21:Correct gender for role) Husband Gender of I2 belonging to family F2 cannot be female
+
+WARNING--(US-01:Date before current date) Family Id:F2 has Marriage Date Sun May 06 16:55:36 EDT 2018 occurs after current date.
+
+WARNING--(US-01:Date before current date) Family Id:F2 has Divorce Date Thu Jun 15 16:55:36 EDT 2017 occurs after current date.
+
+WARNING--(US-04:Marriage before divorce) Divorce Date: Thu Jun 15 16:55:36 EDT 2017 of family ID F2 occurs before marriage date:Sun May 06 16:55:36 EDT 2018
+
+WARNING--(US-01:Date before current date) Birth Date: Mon Aug 13 16:55:36 EDT 2018 of Leni occurs after current date
+
+WARNING--(US-02:Birth before marriage) Marriage Date of Leni occurs before birth date
+
+WARNING--(US-03:Birth before death) Birth Date of Leni occurs after death date
+
+INDIVIDUAL INFORMATION
+
+ID	NAME	SEX	DOB	Alive		DOD		SPOUSE	CHILDREN
+I1	John	M	true
+I2	Sam	F	true	s->[Jeni,Juliet,]	c->[John,Shaan,]	
+I3	Jeni	F	true	s->[Sam,]	c->[John,]	
+I4	Juliet	F	true	s->[Sam,]	c->[Shaan,]	
+I5	Shaan	M	true
+I6	James	M	true	s->[Cathy,Leni,]	c->[Sam,]	
+I7	Cathy	F	true	s->[James,]	c->[Sam,]	
+I8	Leni	F	13/08/2018	false08/05/1900		s->[James,]	c->[]	
