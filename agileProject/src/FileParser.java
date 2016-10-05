@@ -244,7 +244,7 @@ public class FileParser {
 					Date husBirth = indiMap.get(fa.getHusbId()).getBirth();
 					if(husBirth.after(marrDate))
 					{
-						warnings.add("\nWARNING-- Marriage Date of "+indiMap.get(fa.getHusbId()).getName()+" occurs before birth date");
+						warnings.add("\nWARNING in US01-- Marriage Date of "+indiMap.get(fa.getHusbId()).getName()+" occurs before birth date");
 					}
 				}
 				if(fa.getWifeId()!=null)
@@ -252,7 +252,7 @@ public class FileParser {
 					Date wifeBirth = indiMap.get(fa.getWifeId()).getBirth();
 					if(wifeBirth.after(marrDate))
 					{
-						warnings.add("\nWARNING-- Marriage Date of "+indiMap.get(fa.getWifeId()).getName()+" occurs before birth date");
+						warnings.add("\nWARNING in US01-- Marriage Date of "+indiMap.get(fa.getWifeId()).getName()+" occurs before birth date");
 					}
 				}
 			}
@@ -260,7 +260,7 @@ public class FileParser {
 		private void checkDeathBeforeBirth(IndividualInfo individualInfo_) 
 		 {
 	        if(individualInfo_.getDeath()!=null && individualInfo_.getBirth()!=null && individualInfo_.getBirth().after(individualInfo_.getDeath())){
-	            warnings.add("\nWARNING-- Birth Date: "+individualInfo_.getBirth() +" of "+individualInfo_.getName()+" occurs after death date");
+	            warnings.add("\nWARNING in US02-- Birth Date of "+individualInfo_.getName()+" occurs after death date");
 	        }
 	    }
 		
