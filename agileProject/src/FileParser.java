@@ -58,7 +58,7 @@ public class FileParser {
 	                if (levelNo == 0 && thridArg.equals("INDI")) {
 	                    if (iInfo != null) {
 	                        if(indiMap.containsKey(iInfo.getId())){
-	                            warnings.add("\nWARNING--(US22:Unique IDs) The person with id "+iInfo.getId()+" already Exists");
+	                            warnings.add("\nWARNING--(US-22:Unique IDs) The person with id "+iInfo.getId()+" already Exists");
 	                        }
 	                        indiMap.put(iInfo.getId(), iInfo);
 	                    }
