@@ -58,7 +58,7 @@ public class FileParser {
 	                if (levelNo == 0 && thridArg.equals("INDI")) {
 	                    if (iInfo != null) {
 	                        if(indiMap.containsKey(iInfo.getId())){
-	                            warnings.add("\nWARNING--(US-22:Correct gender for role) The person with id "+iInfo.getId()+" already Exists");
+	                            warnings.add("\nWARNING--(US22:	Unique IDs) The person with id "+iInfo.getId()+" already Exists");
 	                        }
 	                        indiMap.put(iInfo.getId(), iInfo);
 	                    }
@@ -168,7 +168,7 @@ public class FileParser {
 	            //Sprint-1 Check for correct Genders for Husband and Wife
 	            if(indiMap.get((fa.getValue().getHusbId())).getGender().equals("F")){
 	                //System.err.println("WARNING-- Husband Gender of "+fa.getValue().getHusbId() +" cannot be female");
-	                warnings.add("\nWARNING--(US-21) Husband Gender of "+fa.getValue().getHusbId()+" belonging to family "+fa.getValue().getFid() +" cannot be female");
+	                warnings.add("\nWARNING--(US-21:Correct gender for role) Husband Gender of "+fa.getValue().getHusbId()+" belonging to family "+fa.getValue().getFid() +" cannot be female");
 	            }
 
 	            if(indiMap.get((fa.getValue().getWifeId())).getGender().equals("M")){
