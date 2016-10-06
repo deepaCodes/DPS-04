@@ -150,7 +150,7 @@ public class FileParser {
 
 	    public void displayFamInfo(Map<String, FamInfo> fMap) {
 	        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-
+	        Date currentDate = new Date();
 	        for (Entry<String, FamInfo> fa : fMap.entrySet()) {
 	            System.out.print(fa.getValue().getFid() + "\t");
 	            if(fa.getValue().getMarr()!=null){
@@ -180,12 +180,12 @@ public class FileParser {
 	            //Sprint-1 check for Date before current date
 	            //check marriage date
 	            if(fa.getValue().getMarr()!=null && fa.getValue().getMarr().after(new Date())){
-	                warnings.add("\nWARNING--(US-01:Date before current date) Family Id:"+fa.getValue().getFid()+" has Marriage Date "+fa.getValue().getMarr() +" occurs after current date.");
+	                warnings.add("\nWARNING--(US-01:Date before current date) Family Id:"+fa.getValue().getFid()+" has Marriage Date "+sdf.format(fa.getValue().getMarr()) +" occurs after current date "+sdf.format(currentDate));
 	            }
 
 	            //check divorce date
 	            if(fa.getValue().getDiv()!=null && fa.getValue().getDiv().after(new Date())){
-	                warnings.add("\nWARNING--(US-01:Date before current date) Family Id:"+fa.getValue().getFid()+" has Divorce Date "+fa.getValue().getDiv() +" occurs after current date.");
+	                warnings.add("\nWARNING--(US-01:Date before current date) Family Id:"+fa.getValue().getFid()+" has Divorce Date "+sdf.format(fa.getValue().getDiv()) +" occurs after current date "+sdf.format(currentDate));
 
 	            }
 
@@ -216,21 +216,27 @@ public class FileParser {
 	    }
 
 	    private void checkMarriageBeforeDivorce(FamInfo fa) {
+	    	SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+	    	Date currentDate = new Date();
 	        if( fa.getDiv()!=null && fa.getMarr()!=null && fa.getDiv().before(fa.getMarr())){
-	            warnings.add("\nWARNING--(US-04:Marriage before divorce) Divorce Date: "+fa.getDiv() +" of family ID "+fa.getFid()+" occurs before marriage date:"+fa.getMarr());
+	            warnings.add("\nWARNING--(US-04:Marriage before divorce) Divorce Date "+sdf.format(fa.getDiv()) +" of family ID "+fa.getFid()+" occurs before marriage date "+sdf.format(fa.getMarr()));
 
 	        }
 	    }
 
 	    private void checkBirthDate(IndividualInfo individualInfo_) {
+	    	SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+	    	Date currentDate = new Date();
 	        if(individualInfo_.getDeath()!=null && individualInfo_.getBirth()!=null && individualInfo_.getBirth().after(individualInfo_.getDeath())){
-	            warnings.add("\nWARNING--(US-01:Date before current date) Birth Date: "+individualInfo_.getBirth() +" of "+individualInfo_.getName()+" occurs after current date");
+	            warnings.add("\nWARNING--(US-01:Date before current date) Birth Date: "+sdf.format(individualInfo_.getBirth()) +" of "+individualInfo_.getName()+" occurs after current date "+sdf.format(currentDate));
 	        }
 	    }
 
 	    private void checkDeathDate(IndividualInfo individualInfo_) {
+	    	SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+	    	Date currentDate = new Date();
 	        if(individualInfo_.getBirth()!=null && individualInfo_.getDeath()!=null && individualInfo_.getDeath().after(new Date())){
-	            warnings.add("\nWARNING--(US-01:Date before current date) Death Date: "+individualInfo_.getBirth() +" of "+individualInfo_.getName()+" occurs after current date");
+	            warnings.add("\nWARNING--(US-01:Date before current date) Death Date: "+sdf.format(individualInfo_.getBirth()) +" of "+individualInfo_.getName()+" occurs after current date"+sdf.format(currentDate));
 	        }
 	    }
 		

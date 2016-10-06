@@ -14,13 +14,13 @@ WARNING--(US-02:Birth before marriage) Marriage Date of Sam occurs before birth 
 
 WARNING--(US-21:Correct gender for role) Husband Gender of I2 belonging to family F2 cannot be female
 
-WARNING--(US-01:Date before current date) Family Id:F2 has Marriage Date Sun May 06 16:55:36 EDT 2018 occurs after current date.
+WARNING--(US-01:Date before current date) Family Id:F2 has Marriage Date 06/05/2018 occurs after current date 06/10/2016
 
-WARNING--(US-01:Date before current date) Family Id:F2 has Divorce Date Thu Jun 15 16:55:36 EDT 2017 occurs after current date.
+WARNING--(US-01:Date before current date) Family Id:F2 has Divorce Date 15/06/2017 occurs after current date 06/10/2016
 
-WARNING--(US-04:Marriage before divorce) Divorce Date: Thu Jun 15 16:55:36 EDT 2017 of family ID F2 occurs before marriage date:Sun May 06 16:55:36 EDT 2018
+WARNING--(US-04:Marriage before divorce) Divorce Date 15/06/2017 of family ID F2 occurs before marriage date 06/05/2018
 
-WARNING--(US-01:Date before current date) Birth Date: Mon Aug 13 16:55:36 EDT 2018 of Leni occurs after current date
+WARNING--(US-01:Date before current date) Birth Date: 13/08/2018 of Leni occurs after current date 06/10/2016
 
 WARNING--(US-02:Birth before marriage) Marriage Date of Leni occurs before birth date
 

@@ -19,9 +19,6 @@ public class IndividualInfo {
         alive=true;
     }
 
-
-
-
     public List<String> getChildFamilyList() {
         return childFamilyList;
     }
