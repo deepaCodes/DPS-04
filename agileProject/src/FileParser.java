@@ -180,12 +180,12 @@ public class FileParser {
 	            //Sprint-1 check for Date before current date
 	            //check marriage date
 	            if(fa.getValue().getMarr()!=null && fa.getValue().getMarr().after(new Date())){
-	                warnings.add("\nWARNING--(US-01:Date before current date) Family Id:"+fa.getValue().getFid()+" has Marriage Date "+sdf.format(fa.getValue().getMarr()) +" occurs after current date "+sdf.format(currentDate));
+	                warnings.add("\nWARNING--(US-01:Date before current date) Marriage Date "+sdf.format(fa.getValue().getMarr()) +" of "+indiMap.get(fa.getValue().getHusbId()).getName()+" occurs after current date "+sdf.format(currentDate));
 	            }
 
 	            //check divorce date
 	            if(fa.getValue().getDiv()!=null && fa.getValue().getDiv().after(new Date())){
-	                warnings.add("\nWARNING--(US-01:Date before current date) Family Id:"+fa.getValue().getFid()+" has Divorce Date "+sdf.format(fa.getValue().getDiv()) +" occurs after current date "+sdf.format(currentDate));
+	                warnings.add("\nWARNING--(US-01:Date before current date) Divorce Date "+sdf.format(fa.getValue().getDiv()) +" of "+indiMap.get(fa.getValue().getHusbId()).getName()+" occurs after current date "+sdf.format(currentDate));
 
 	            }
 
@@ -219,7 +219,7 @@ public class FileParser {
 	    	SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 	    	Date currentDate = new Date();
 	        if( fa.getDiv()!=null && fa.getMarr()!=null && fa.getDiv().before(fa.getMarr())){
-	            warnings.add("\nWARNING--(US-04:Marriage before divorce) Divorce Date "+sdf.format(fa.getDiv()) +" of family ID "+fa.getFid()+" occurs before marriage date "+sdf.format(fa.getMarr()));
+	            warnings.add("\nWARNING--(US-04:Marriage before divorce) Divorce Date "+sdf.format(fa.getDiv()) +" of "+indiMap.get(fa.getHusbId()).getName()+" occurs before marriage date "+sdf.format(fa.getMarr()));
 
 	        }
 	    }
