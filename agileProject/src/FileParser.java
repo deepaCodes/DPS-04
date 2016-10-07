@@ -239,10 +239,11 @@ public class FileParser {
 	            warnings.add("\nWARNING--(US-01:Date before current date) Death Date: "+sdf.format(individualInfo_.getBirth()) +" of "+individualInfo_.getName()+" occurs after current date"+sdf.format(currentDate));
 	        }
 	    }
-		
+		//US-02 Shubham
 		private void checkMarriageBeforeBirth(FamInfo fa) 
 		{
 			Date marrDate = fa.getMarr();
+			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 			if(marrDate!=null)
 			{
 				if(fa.getHusbId()!=null)
@@ -250,7 +251,7 @@ public class FileParser {
 					Date husBirth = indiMap.get(fa.getHusbId()).getBirth();
 					if(husBirth.after(marrDate))
 					{
-						warnings.add("\nWARNING--(US-02:Birth before marriage) Marriage Date of "+indiMap.get(fa.getHusbId()).getName()+" occurs before birth date");
+						warnings.add("\nWARNING--(US-02:Birth before marriage) Marriage Date:" + sdf.format(fa.getMarr())+ " of "+indiMap.get(fa.getHusbId()).getName()+" occurs before birth date:"+ sdf.format(indiMap.get(fa.getHusbId()).getBirth()));
 					}
 				}
 				if(fa.getWifeId()!=null)
@@ -258,15 +259,16 @@ public class FileParser {
 					Date wifeBirth = indiMap.get(fa.getWifeId()).getBirth();
 					if(wifeBirth.after(marrDate))
 					{
-						warnings.add("\nWARNING--(US-02:Birth before marriage) Marriage Date of "+indiMap.get(fa.getWifeId()).getName()+" occurs before birth date");
+						warnings.add("\nWARNING--(US-02:Birth before marriage) Marriage Date:  "+ sdf.format(fa.getMarr())+ " of "+indiMap.get(fa.getWifeId()).getName()+" occurs before birth date:"+sdf.format(indiMap.get(fa.getWifeId()).getBirth()));
 					}
 				}
 			}
 		}
+		//US-03 Shubham
 		private void checkDeathBeforeBirth(IndividualInfo individualInfo_) 
-		 {
+		 { SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 	        if(individualInfo_.getDeath()!=null && individualInfo_.getBirth()!=null && individualInfo_.getBirth().after(individualInfo_.getDeath())){
-	            warnings.add("\nWARNING--(US-03:Birth before death) Birth Date of "+individualInfo_.getName()+" occurs after death date");
+	            warnings.add("\nWARNING--(US-03:Birth before death) Birth Date:"+ sdf.format(individualInfo_.getBirth()) +" of "+ individualInfo_.getName() +" occurs after death date : "+  sdf.format(individualInfo_.getDeath()));
 	        }
 	    }
 		
