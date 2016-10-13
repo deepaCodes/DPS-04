@@ -152,14 +152,18 @@ public class FileParser {
 	        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 	        Date currentDate = new Date();
 	        for (Entry<String, FamInfo> fa : fMap.entrySet()) {
-	            System.out.print(fa.getValue().getFid() + "\t");
+	            System.out.print(fa.getValue().getFid() + "\t\t");
 	            if(fa.getValue().getMarr()!=null){
 	                System.out.print(sdf.format(fa.getValue().getMarr())+"\t");
 
+	            }else{
+	            	System.out.print("---\t\t");
 	            }
 	            if(fa.getValue().getDiv()!=null){
 	                System.out.print(sdf.format(fa.getValue().getDiv())+"\t");
 
+	            }else{
+	            	System.out.print("---\t\t");
 	            }
 	            //Display the names of husband and wife
 	            String husbName =indiMap.get((fa.getValue().getHusbId())).getName() ;
@@ -205,7 +209,7 @@ public class FileParser {
 	            checkDeathBeforeBirth(indiMap.get((fa.getValue().getWifeId())));
 	            checkDeathBeforeBirth(indiMap.get((fa.getValue().getHusbId())));
 
-	            System.out.print(husbName + "\t"
+	            System.out.print(husbName + "\t\t"
 	                    + wifeName + "\t"
 	                    + fa.getValue().getChildId());
 	            System.out.println();
@@ -276,7 +280,9 @@ public class FileParser {
 	        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
 	        // display individual information
-	        System.out.println("ID\tNAME\tSEX\tDOB\tAlive\t\tDOD\t\tSPOUSE\tCHILDREN");
+	        System.out.println("ID\tNAME\tSEX\tDOB\tAlive\t\tDOD\t\tSPOUSE\t\t\tCHILDREN");
+	        System.out.println("---------------*-------------*---------------*-----------*-------------*------------*-------------*");
+
 	        for (Entry<String, IndividualInfo> i : indiMap.entrySet()) {
 	            IndividualInfo value = i.getValue();
 	            System.out.print(value.getId() + "\t");
@@ -288,10 +294,14 @@ public class FileParser {
 	            System.out.print(value.getGender() + "\t");
 	            if (value.getDeath() != null) {
 	                System.out.print(sdf.format(value.getBirth()) + "\t");
+	            }else{
+	            	System.out.print("---\t");
 	            }
 	            System.out.print(value.isAlive());
 	            if (value.getDeath() != null) {
 	                System.out.print(sdf.format(value.getDeath()) + "\t");
+	            }else{
+	            	System.out.print("\t\t---");
 	            }
 
 	            if (!value.getSpouseFamilyList().isEmpty()) {
@@ -310,11 +320,13 @@ public class FileParser {
 	                            }
 	                        }
 	                    }
+	                    
 
 	                }
 
 	                sb.append("]");
-	                System.out.print("\ts->"+ sb.toString() + "\t");
+	                
+	                System.out.print("\t\ts->"+ sb.toString() + "\t\t");
 
 	            }
 

@@ -5,7 +5,7 @@ public class ParseMain {
 	public static void main(String[] args) {
 		// Change the path of file
 
-		 String path = "C://Users//Shubhsz//Desktop//agile//Project-2git//DPS-04//agileProject//Sprint 1.ged";
+		 String path = "W:/GitHub-Work/DPS-04/agileProject/Sprint 1.ged";
 
 	        FileParser fp = new FileParser(path);
 	        fp.parseFile();
@@ -14,7 +14,8 @@ public class ParseMain {
 	        Map<String, FamInfo> fmap = di.parseFamily();
 	        System.out.println("FAMILY INFORMATION");
 	        System.out.println();
-	        System.out.println("Familyid\tMarried\tDivorced\t Husband\tWife\tChildren");
+	        System.out.println("Familyid\tMarried\t\tDivorced\t Husband\tWife\tChildren");
+	        System.out.println("---------------*-------------*---------------*-----------*-------------*------------*");
 	        fp.displayFamInfo(fmap);
 
 	        System.out.println("\nINDIVIDUAL INFORMATION");
