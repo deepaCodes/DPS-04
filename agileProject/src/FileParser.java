@@ -181,7 +181,21 @@ public class FileParser {
 	                warnings.add("\nWARNING--Sprint-1(US-21:Correct gender for role) Wife Gender of "+fa.getValue().getWifeId()+" belonging to family "+fa.getValue().getFid() +" cannot be male");
 
 	            }
-
+	            //Sprint-2 US05	Marriage before death
+	            if((indiMap.get((fa.getValue().getHusbId())).getDeath()!=null)) {
+	            	if(indiMap.get((fa.getValue().getHusbId())).getDeath().before(fa.getValue().getMarr())){
+	            		warnings.add("\nWARNING--Sprint-2(US-05:Marriage before death) "+indiMap.get((fa.getValue().getHusbId())).getName()+" is dead before marriage" );
+	            		
+	            	}
+	            }
+	            if((indiMap.get((fa.getValue().getWifeId())).getDeath()!=null)){
+	            	if(indiMap.get((fa.getValue().getWifeId())).getDeath().before(fa.getValue().getMarr())){
+	            		warnings.add("\nWARNING--Sprint-2(US-05:Marriage before death): "+indiMap.get((fa.getValue().getHusbId())).getName()+" is dead before marriage" );
+	            		
+	            	}
+	            	
+	            }
+	            
 	            //Sprint-1 check for Date before current date
 	            //check marriage date
 	            if(fa.getValue().getMarr()!=null && fa.getValue().getMarr().after(new Date())){
