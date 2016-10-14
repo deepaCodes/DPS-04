@@ -11,11 +11,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.TreeMap;
 
 public class FileParser {
 	 private String fPath;
-	    private Map<String, IndividualInfo> indiMap = new HashMap<String, IndividualInfo>();
-	    private Map<String, Family> familyMap = new HashMap<String, Family>();
+	    private Map<String, IndividualInfo> indiMap = new TreeMap<String, IndividualInfo>();
+	    private Map<String, Family> familyMap = new TreeMap<String, Family>();
 
 	    private List<String> warnings = new ArrayList<>();
 	    public FileParser(String fp) {
@@ -58,7 +59,7 @@ public class FileParser {
 	                if (levelNo == 0 && thridArg.equals("INDI")) {
 	                    if (iInfo != null) {
 	                        if(indiMap.containsKey(iInfo.getId())){
-	                            warnings.add("\nWARNING--(US-22:Unique IDs) The person with id "+iInfo.getId()+" already Exists");
+	                            warnings.add("\nWARNING--Sprint-1(US-22:Unique IDs) The person with id "+iInfo.getId()+" already Exists");
 	                        }
 	                        indiMap.put(iInfo.getId(), iInfo);
 	                    }
@@ -172,12 +173,12 @@ public class FileParser {
 	            //Sprint-1 Check for correct Genders for Husband and Wife
 	            if(indiMap.get((fa.getValue().getHusbId())).getGender().equals("F")){
 	                //System.err.println("WARNING-- Husband Gender of "+fa.getValue().getHusbId() +" cannot be female");
-	                warnings.add("\nWARNING--(US-21:Correct gender for role) Husband Gender of "+fa.getValue().getHusbId()+" belonging to family "+fa.getValue().getFid() +" cannot be female");
+	                warnings.add("\nWARNING--Sprint-1(US-21:Correct gender for role) Husband Gender of "+fa.getValue().getHusbId()+" belonging to family "+fa.getValue().getFid() +" cannot be female");
 	            }
 
 	            if(indiMap.get((fa.getValue().getWifeId())).getGender().equals("M")){
 	                //System.err.println("WARNING-- Wife Gender cannot be male");
-	                warnings.add("\nWARNING--(US-21) Wife Gender of "+fa.getValue().getWifeId()+" belonging to family "+fa.getValue().getFid() +" cannot be male");
+	                warnings.add("\nWARNING--Sprint-1(US-21:Correct gender for role) Wife Gender of "+fa.getValue().getWifeId()+" belonging to family "+fa.getValue().getFid() +" cannot be male");
 
 	            }
 
@@ -214,12 +215,11 @@ public class FileParser {
 	                    + fa.getValue().getChildId());
 	            System.out.println();
 	        }
-	        for (String warn : warnings) {
-	            System.out.println(warn);
-	        }
 	    }
 
-	    private void checkMarriageBeforeDivorce(FamInfo fa) {
+	   
+
+		private void checkMarriageBeforeDivorce(FamInfo fa) {
 	    	SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 	    	Date currentDate = new Date();
 	        if( fa.getDiv()!=null && fa.getMarr()!=null && fa.getDiv().before(fa.getMarr())){
@@ -276,15 +276,20 @@ public class FileParser {
 	        }
 	    }
 		
+		
 	    public void displayindividualInfo(Map<String, FamInfo> fmap) {
 	        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
 	        // display individual information
-	        System.out.println("ID\tNAME\tSEX\tDOB\tAlive\t\tDOD\t\tSPOUSE\t\t\tCHILDREN");
-	        System.out.println("---------------*-------------*---------------*-----------*-------------*------------*-------------*");
+	        System.out.println("ID\tNAME\tSEX\tDOB\t\tAlive\t\tDOD\t\tSPOUSE\t\t\tCHILDREN");
+	        System.out.println("-----*------*-------*--------------*---------*-------*-------*----------------------*-------------------------------------*");
 
 	        for (Entry<String, IndividualInfo> i : indiMap.entrySet()) {
 	            IndividualInfo value = i.getValue();
+	            //List all the dead people
+	            if(!value.isAlive()){
+	            	warnings.add("\nWARNING--Sprint-2(US29	List deceased): "+value.getName());
+	            }
 	            System.out.print(value.getId() + "\t");
 	            if (value == null) {
 	                continue;
@@ -297,7 +302,7 @@ public class FileParser {
 	            }else{
 	            	System.out.print("---\t");
 	            }
-	            System.out.print(value.isAlive());
+	            System.out.print("\t"+value.isAlive());
 	            if (value.getDeath() != null) {
 	                System.out.print(sdf.format(value.getDeath()) + "\t");
 	            }else{
@@ -358,8 +363,15 @@ public class FileParser {
 	            System.out.println();
 
 	        }// for ends
+	        
 
 	    }
+	    
+	    public void displayWarnings() {
+	    	for (String warn : warnings) {
+	            System.out.println(warn);
+	        }
+		}
 
 	    private List<String> getValidTags() {
 	        List<String> validTag = new ArrayList<String>();
