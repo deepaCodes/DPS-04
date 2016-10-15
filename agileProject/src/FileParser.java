@@ -229,7 +229,7 @@ public class FileParser {
 	            		IndividualInfo i1= indiMap.get(fa.getValue().getWifeId());
 	            		
 	            		//Child should be born before death of mother
-	            		if(fa.getValue().getDiv()!=null && i.getBirth()!=null && fa.getValue().getWifeId()!=null && i1.getDeath()!=null && i1.getDeath().after(i.getBirth())) 
+	            		if(fa.getValue().getDiv()!=null && i.getBirth()!=null && fa.getValue().getWifeId()!=null && i1.getDeath()!=null && (i.getBirth().before(i1.getDeath()))) 
 	            			{
 	            			warnings.add("\nWARNING--Sprint-2(US-09:Birth before death of parents): "+i.getName()+" is born after death of parents" );
 	            			}
