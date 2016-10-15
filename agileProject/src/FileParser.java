@@ -196,6 +196,60 @@ public class FileParser {
 	            	
 	            }
 	            
+	            //Sprint-2 US08 Birth before marriage of parents
+	            if(fa.getValue().getChildId()!=null){
+	            	for(String child:fa.getValue().getChildId()){
+	            		IndividualInfo i= indiMap.get(child);
+	            		
+	            		if(fa.getValue().getMarr().after(i.getBirth())){
+	            			warnings.add("\nWARNING--Sprint-2(US-08:Birth before marriage of parents): "+i.getName()+" is born before marriage" );
+	            		}
+	            	}
+	            }
+	            
+	          //Sprint-2 US08 Birth before divorce of parents
+	            if(fa.getValue().getChildId()!=null){
+	            	for(String child:fa.getValue().getChildId()){
+	            		IndividualInfo i= indiMap.get(child);
+	            		
+	            		if(fa.getValue().getDiv()!=null && i.getBirth()!=null){
+	            			
+	            		if(fa.getValue().getDiv().after(i.getBirth())){
+	            			warnings.add("\nWARNING--Sprint-2(US-08:Birth before divorce of parents): "+i.getName()+" is born before divorce" );
+	            			}
+	            		}
+	            	}
+	            }
+	            
+	            //Sprint-2 US09 Birth before death of parents
+	            if(fa.getValue().getChildId()!=null){
+	            	
+	            	for(String child:fa.getValue().getChildId()){
+	            		IndividualInfo i= indiMap.get(child);
+	            		IndividualInfo i1= indiMap.get(fa.getValue().getWifeId());
+	            		
+	            		//Child should be born before death of mother
+	            		if(fa.getValue().getDiv()!=null && i.getBirth()!=null && fa.getValue().getWifeId()!=null && i1.getDeath()!=null && i1.getDeath().after(i.getBirth())) 
+	            			{
+	            			warnings.add("\nWARNING--Sprint-2(US-09:Birth before death of parents): "+i.getName()+" is born after death of parents" );
+	            			}
+	            		
+	            		//before 9 months after death of father
+		            	if(fa.getValue().getHusbId()!=null && indiMap.get(fa.getValue().getHusbId()).getDeath()!=null ){
+		            		Date referenceDate = indiMap.get(fa.getValue().getHusbId()).getDeath();
+			            	Calendar c = Calendar.getInstance(); 
+			            	c.setTime(referenceDate); 
+			            	c.add(Calendar.MONTH, -9);
+			            	c.getTime();
+	            		
+	            		if(i.getBirth()!=null && c.getTime().after(i.getBirth())){
+	            			warnings.add("\nWARNING--Sprint-2(US-09:Birth before death of parents): "+i.getName()+" is born after death of parents" );
+	            			}
+		            	}
+	            	}
+	            }
+	          
+	            
 	            //Sprint-1 check for Date before current date
 	            //check marriage date
 	            if(fa.getValue().getMarr()!=null && fa.getValue().getMarr().after(new Date())){
@@ -230,8 +284,6 @@ public class FileParser {
 	            System.out.println();
 	        }
 	    }
-
-	   
 
 		private void checkMarriageBeforeDivorce(FamInfo fa) {
 	    	SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
