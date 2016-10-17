@@ -11,14 +11,6 @@
 2 NAME Pooja Kamat
 1 SUBN
 1 CHAR UTF-8
-0 @I1@ INDI
-1 NAME Duplicate /Rooney/
-2 GIVN Duplicate
-2 SURN Rooney
-2 _MARNM Rooney
-1 SEX M
-1 BIRT
-2 DATE 3 APR 2018
 0 @I2@ INDI
 1 NAME John /Rooney/
 2 GIVN John

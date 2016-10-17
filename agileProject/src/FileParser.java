@@ -348,8 +348,13 @@ public class FileParser {
 	        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
 	        // display individual information
+<<<<<<< HEAD
 	        System.out.println("ID\tNAME\t\tSEX\tDOB\t\tAlive\t\tDOD\t\tSPOUSE\t\t\tCHILDREN");
 	        System.out.println("-----*------*-------*--------------*---------*-------*-------*----------------------*-------------------------------------*");
+=======
+	        System.out.println("ID\tNAME\tSEX\tDOB\t\tAlive\t\tDOD\t\tSPOUSE\t\t\tCHILDREN");
+	        System.out.println("-----*------*-------*--------------*--------------*------------------*----------------------*-------------------------------------*");
+>>>>>>> origin/master
 
 	        for (Entry<String, IndividualInfo> i : indiMap.entrySet()) {
 	            IndividualInfo value = i.getValue();
@@ -365,15 +370,15 @@ public class FileParser {
 	            System.out.print(value.getName() + "\t\t");
 	            System.out.print(value.getGender() + "\t");
 	            if (value.getDeath() != null) {
-	                System.out.print(sdf.format(value.getBirth()) + "\t");
+	                System.out.print(sdf.format(value.getBirth()) + "");
 	            }else{
 	            	System.out.print("---\t");
 	            }
 	            System.out.print("\t"+value.isAlive());
 	            if (value.getDeath() != null) {
-	                System.out.print(sdf.format(value.getDeath()) + "\t");
+	                System.out.print("\t\t" + sdf.format(value.getDeath()));
 	            }else{
-	            	System.out.print("\t\t---");
+	            	System.out.print("\t\t---\t");
 	            }
 
 	            if (!value.getSpouseFamilyList().isEmpty()) {
@@ -398,7 +403,7 @@ public class FileParser {
 
 	                sb.append("]");
 	                
-	                System.out.print("\t\ts->"+ sb.toString() + "\t\t");
+	                System.out.print("\ts->"+ sb.toString() + "\t\t");
 
 	            }
 
@@ -423,7 +428,7 @@ public class FileParser {
 
 
 	                sb.append("]");
-	                System.out.print("c->" + sb.toString() + "\t");
+	                System.out.print("c->" + sb.toString() + "\t\t");
 
 	            }
 
