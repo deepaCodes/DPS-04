@@ -309,7 +309,7 @@ public class FileParser {
 	            warnings.add("\nWARNING--(US-01:Date before current date) Death Date: "+sdf.format(individualInfo_.getBirth()) +" of "+individualInfo_.getName()+" occurs after current date"+sdf.format(currentDate));
 	        }
 	    }
-		//US-02 Shubham
+		//US-02 Shubham Sprint 1
 		private void checkMarriageBeforeBirth(FamInfo fa) 
 		{
 			Date marrDate = fa.getMarr();
@@ -334,7 +334,7 @@ public class FileParser {
 				}
 			}
 		}
-		//US-03 Shubham
+		//US-03 Shubham Sprint 1
 		private void checkDeathBeforeBirth(IndividualInfo individualInfo_) 
 		 { SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 	        if(individualInfo_.getDeath()!=null && individualInfo_.getBirth()!=null && individualInfo_.getBirth().after(individualInfo_.getDeath())){
