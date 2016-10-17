@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -15,8 +16,8 @@ import java.util.TreeMap;
 
 public class FileParser {
 	 private String fPath;
-	    private Map<String, IndividualInfo> indiMap = new TreeMap<String, IndividualInfo>();
-	    private Map<String, Family> familyMap = new TreeMap<String, Family>();
+	    private Map<String, IndividualInfo> indiMap = new LinkedHashMap<String, IndividualInfo>();
+	    private Map<String, Family> familyMap = new LinkedHashMap<String, Family>();
 
 	    private List<String> warnings = new ArrayList<>();
 	    public FileParser(String fp) {
