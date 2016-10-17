@@ -348,13 +348,9 @@ public class FileParser {
 	        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
 	        // display individual information
-<<<<<<< HEAD
+
 	        System.out.println("ID\tNAME\t\tSEX\tDOB\t\tAlive\t\tDOD\t\tSPOUSE\t\t\tCHILDREN");
-	        System.out.println("-----*------*-------*--------------*---------*-------*-------*----------------------*-------------------------------------*");
-=======
-	        System.out.println("ID\tNAME\tSEX\tDOB\t\tAlive\t\tDOD\t\tSPOUSE\t\t\tCHILDREN");
-	        System.out.println("-----*------*-------*--------------*--------------*------------------*----------------------*-------------------------------------*");
->>>>>>> origin/master
+	        System.out.println("-----*-----------*-----------*--------------*--------------*------------------*----------------------*-------------------------*");
 
 	        for (Entry<String, IndividualInfo> i : indiMap.entrySet()) {
 	            IndividualInfo value = i.getValue();
