@@ -278,6 +278,8 @@ public class FileParser {
 				//checkDeathBeforeBirth();
 	            checkDeathBeforeBirth(indiMap.get((fa.getValue().getWifeId())));
 	            checkDeathBeforeBirth(indiMap.get((fa.getValue().getHusbId())));
+				
+				
 
 	            System.out.print(husbName + "\t\t"
 	                    + wifeName + "\t"
@@ -286,6 +288,66 @@ public class FileParser {
 	        }
 	    }
 
+		//Shubham Sprint 2
+		private void checkUniqueNameBirth(IndividualInfo ind) 
+		{
+	        String indGivenName = (String)ind.getName();
+	        //String indSurName = ind.getSurName();
+	        Date indBirth = (Date)ind.getBirth();
+			String indid = (String)ind.getId();
+			
+			Set set = indiMap.entrySet();
+			Iterator it = set.iterator();
+	        while(it.hasNext())
+			{
+				Map.Entry me = (Map.Entry)it.next();
+				IndividualInfo value = (IndividualInfo)me.getValue();
+				
+	            String givenName = (String)value.getName();
+	            //String surName = individuals.get(i).getSurName();
+	            Date birth = (Date)value.getBirth();
+	            String id = (String)value.getId();
+	            if (indGivenName!= null && indBirth != null && givenName!=null && birth!=null )
+				{
+					if (indGivenName.equals(givenName) && indBirth.equals(birth)) 
+					{
+						warnings.add("\nWARNING--(US-23:Unique name and birth date) Individual "+ indGivenName + " (" +indid +") " +"matches with another Individual" +" (" +id +") " + "with same name and birth date: " + birth);
+					}
+				}
+	        }
+	        return true;
+	    }
+		
+		//Shubham Sprint-2
+		public void sibingsShouldNotMarry (FamilyInfo fam)
+		{
+			List<String> childList = Collection.sort(fam.getChild());
+			
+			Set set = f.entrySet();
+			Iterator it = set.iterator();
+			//Entry<String, IndividualInfo> i : indiMap.entrySet()
+			for(Entry<String, Family> i:familyMap.entrySet())
+			{
+				Family fmly = i.getValue();
+				List<String> couples = new List<String>();
+				List<IndividualInfo> spouses = fmly.getSpouse();
+				for(IndividualInfo ind: spouses)
+				{
+					spouses.add(ind.getId());
+				}
+				List<String> sortedSpouses = new List<String>();
+				sortedSpouses = Collections.sort(spouses);
+				
+				if (Collections.indexOfSubList(childList, sortedSpouses)!=-1)
+				{
+					warnings.add("\nWARNING--(US-18:Siblings should not marry) Siblings should not marry in "+fam.getFid());
+				}
+			}
+			
+			
+		}
+		
+		
 		private void checkMarriageBeforeDivorce(FamInfo fa) {
 	    	SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 	    	Date currentDate = new Date();
@@ -429,6 +491,9 @@ public class FileParser {
 	            }
 
 	            System.out.println();
+				
+				//Shubham
+				checkUniqueNameBirth(value);
 
 	        }// for ends
 	        
