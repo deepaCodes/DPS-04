@@ -11,7 +11,6 @@ public class ParseMain {
 
 =======
 		 String path = "W:/GitHub-Work/DPS-04/agileProject/Sprint 1.ged";
-		 //Shubham's path
 		 //String path = "C:/Users/Shubhsz/Desktop/agile/DPS-04/agileProject/Sprint 1.ged";
 >>>>>>> origin/master*/
 	        FileParser fp = new FileParser(path);
