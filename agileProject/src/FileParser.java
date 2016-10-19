@@ -258,12 +258,12 @@ public class FileParser {
 	            //Sprint-1 check for Date before current date
 	            //check marriage date
 	            if(fa.getValue().getMarr()!=null && fa.getValue().getMarr().after(new Date())){
-	                warnings.add("\nWARNING--(US-01:Date before current date) Marriage Date "+sdf.format(fa.getValue().getMarr()) +" of "+indiMap.get(fa.getValue().getHusbId()).getName()+" occurs after current date "+sdf.format(currentDate));
+	                warnings.add("\nWARNING--Sprint-1(US-01:Date before current date) Marriage Date "+sdf.format(fa.getValue().getMarr()) +" of "+indiMap.get(fa.getValue().getHusbId()).getName()+" occurs after current date "+sdf.format(currentDate));
 	            }
 
 	            //check divorce date
 	            if(fa.getValue().getDiv()!=null && fa.getValue().getDiv().after(new Date())){
-	                warnings.add("\nWARNING--(US-01:Date before current date) Divorce Date "+sdf.format(fa.getValue().getDiv()) +" of "+indiMap.get(fa.getValue().getHusbId()).getName()+" occurs after current date "+sdf.format(currentDate));
+	                warnings.add("\nWARNING--Sprint-1(US-01:Date before current date) Divorce Date "+sdf.format(fa.getValue().getDiv()) +" of "+indiMap.get(fa.getValue().getHusbId()).getName()+" occurs after current date "+sdf.format(currentDate));
 
 	            }
 
@@ -321,7 +321,7 @@ public class FileParser {
 	            	String dt2 = birth.toString();
 					if (indGivenName.equalsIgnoreCase(givenName) && dt1.equalsIgnoreCase(dt2)) 
 					{
-						warnings.add("\nWARNING--(US-23:Unique name and birth date) Individual "+ indGivenName + " (" +indid +") " +"matches with another Individual" +" (" +id +") " + "with same name and birth date: " + birth);
+						warnings.add("\nWARNING--Sprint-2(US-23:Unique name and birth date) Individual "+ indGivenName + " (" +indid +") " +"matches with another Individual" +" (" +id +") " + "with same name and birth date: " + birth);
 					}
 				}
 	        }
@@ -357,7 +357,7 @@ public class FileParser {
 				}
 				if(count>1)
 				{
-					warnings.add("\nWARNING--Family ID "+fmly.getfId()+" (US-18:Siblings as couple)The siblings are couple");
+					warnings.add("\nWARNING--Sprint-2(US-18:Siblings as couple)Family ID "+fmly.getfId()+" The siblings are couple");
 				}
 			}
 			
@@ -369,7 +369,7 @@ public class FileParser {
 	    	SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 	    	Date currentDate = new Date();
 	        if( fa.getDiv()!=null && fa.getMarr()!=null && fa.getDiv().before(fa.getMarr())){
-	            warnings.add("\nWARNING--(US-04:Marriage before divorce) Divorce Date "+sdf.format(fa.getDiv()) +" of "+indiMap.get(fa.getHusbId()).getName()+" occurs before marriage date "+sdf.format(fa.getMarr()));
+	            warnings.add("\nWARNING--Sprint-1(US-04:Marriage before divorce) Divorce Date "+sdf.format(fa.getDiv()) +" of "+indiMap.get(fa.getHusbId()).getName()+" occurs before marriage date "+sdf.format(fa.getMarr()));
 
 	        }
 	    }
@@ -378,7 +378,7 @@ public class FileParser {
 	    	SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 	    	Date currentDate = new Date();
 	        if(individualInfo_.getDeath()!=null && individualInfo_.getBirth()!=null && individualInfo_.getBirth().after(individualInfo_.getDeath())){
-	            warnings.add("\nWARNING--(US-01:Date before current date) Birth Date: "+sdf.format(individualInfo_.getBirth()) +" of "+individualInfo_.getName()+" occurs after current date "+sdf.format(currentDate));
+	            warnings.add("\nWARNING--Sprint-1(US-01:Date before current date) Birth Date: "+sdf.format(individualInfo_.getBirth()) +" of "+individualInfo_.getName()+" occurs after current date "+sdf.format(currentDate));
 	        }
 	    }
 
@@ -386,7 +386,7 @@ public class FileParser {
 	    	SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 	    	Date currentDate = new Date();
 	        if(individualInfo_.getBirth()!=null && individualInfo_.getDeath()!=null && individualInfo_.getDeath().after(new Date())){
-	            warnings.add("\nWARNING--(US-01:Date before current date) Death Date: "+sdf.format(individualInfo_.getBirth()) +" of "+individualInfo_.getName()+" occurs after current date"+sdf.format(currentDate));
+	            warnings.add("\nWARNING--Sprint-1(US-01:Date before current date) Death Date: "+sdf.format(individualInfo_.getBirth()) +" of "+individualInfo_.getName()+" occurs after current date"+sdf.format(currentDate));
 	        }
 	    }
 		//US-02 Shubham Sprint 1
@@ -401,7 +401,7 @@ public class FileParser {
 					Date husBirth = indiMap.get(fa.getHusbId()).getBirth();
 					if(husBirth.after(marrDate))
 					{
-						warnings.add("\nWARNING--(US-02:Birth before marriage) Marriage Date:" + sdf.format(fa.getMarr())+ " of "+indiMap.get(fa.getHusbId()).getName()+" occurs before birth date:"+ sdf.format(indiMap.get(fa.getHusbId()).getBirth()));
+						warnings.add("\nWARNING--Sprint-1(US-02:Birth before marriage) Marriage Date:" + sdf.format(fa.getMarr())+ " of "+indiMap.get(fa.getHusbId()).getName()+" occurs before birth date:"+ sdf.format(indiMap.get(fa.getHusbId()).getBirth()));
 					}
 				}
 				if(fa.getWifeId()!=null)
@@ -409,7 +409,7 @@ public class FileParser {
 					Date wifeBirth = indiMap.get(fa.getWifeId()).getBirth();
 					if(wifeBirth.after(marrDate))
 					{
-						warnings.add("\nWARNING--(US-02:Birth before marriage) Marriage Date:  "+ sdf.format(fa.getMarr())+ " of "+indiMap.get(fa.getWifeId()).getName()+" occurs before birth date:"+sdf.format(indiMap.get(fa.getWifeId()).getBirth()));
+						warnings.add("\nWARNING--Sprint-1(US-02:Birth before marriage) Marriage Date:  "+ sdf.format(fa.getMarr())+ " of "+indiMap.get(fa.getWifeId()).getName()+" occurs before birth date:"+sdf.format(indiMap.get(fa.getWifeId()).getBirth()));
 					}
 				}
 			}
@@ -418,7 +418,7 @@ public class FileParser {
 		private void checkDeathBeforeBirth(IndividualInfo individualInfo_) 
 		 { SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 	        if(individualInfo_.getDeath()!=null && individualInfo_.getBirth()!=null && individualInfo_.getBirth().after(individualInfo_.getDeath())){
-	            warnings.add("\nWARNING--(US-03:Birth before death) Birth Date:"+ sdf.format(individualInfo_.getBirth()) +" of "+ individualInfo_.getName() +" occurs after death date : "+  sdf.format(individualInfo_.getDeath()));
+	            warnings.add("\nWARNING--Sprint-1(US-03:Birth before death) Birth Date:"+ sdf.format(individualInfo_.getBirth()) +" of "+ individualInfo_.getName() +" occurs after death date : "+  sdf.format(individualInfo_.getDeath()));
 	        }
 	    }
 		
