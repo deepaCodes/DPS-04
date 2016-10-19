@@ -1,0 +1,70 @@
+FAMILY INFORMATION
+
+FAMILYID	MARRIED		DIVORCED	 HUSBAND	WIFE	CHILDREN
+---------------*-------------*---------------*-----------*-------------*------------*
+F1		06/05/2018	15/06/2017	Sam		Juliet	[I6]
+F2		06/05/1965	---		James		Cathy	[I3]
+F3		07/04/1963	---		James		Leni	[I12]
+F4		06/05/2015	---		Fred		Lilly	[]
+
+INDIVIDUAL INFORMATION
+
+ID	NAME		SEX	DOB		Alive		DOD		SPOUSE			CHILDREN
+-----*-----------*-----------*--------------*--------------*------------------*----------------------*-------------------------*
+I2	John		M	---		true		---	
+I99	John		M	---		true		---	
+I3	Sam		F	14/05/2008	false		13/06/2012	s->[Juliet,]		c->[Shaan,]		
+I4	Jeni		F	---		true		---	
+I5	Juliet		F	---		true		---		s->[dup,Sam,]		c->[Shaan,]		
+I6	Shaan		M	---		true		---	
+I7	James		M	---		true		---		s->[Cathy,Leni,]		c->[dup,Sam,Eva,]		
+I8	Cathy		F	---		true		---		s->[James,]		c->[dup,Sam,]		
+I9	Leni		F	13/08/2018	false		08/05/1900	s->[James,]		c->[Eva,]		
+I10	Fred		M	11/04/1970	false		09/06/2014	s->[Lilly,]		c->[]		
+I11	Lilly		F	---		true		---		s->[Fred,]		c->[]		
+I12	Eva		F	---		true		---	
+
+
+----------------------------------------List of Warnings or Errors------------------------------------------------
+
+WARNING--Sprint-1(US-22:Unique IDs) The person with id I3 already Exists
+
+WARNING--Sprint-1(US-21:Correct gender for role) Husband Gender of I3 belonging to family F1 cannot be female
+
+WARNING--Sprint-2(US-05:Marriage before death) Sam is dead before marriage
+
+WARNING--Sprint-2(US-08:Birth before marriage of parents): Shaan is born before marriage
+
+WARNING--Sprint-2(US-08:Birth before divorce of parents): Shaan is born before divorce
+
+WARNING--Sprint-2(US-09:Birth before death of parents): Shaan is born after death of parents
+
+WARNING--(US-01:Date before current date) Marriage Date 06/05/2018 of Sam occurs after current date 19/10/2016
+
+WARNING--(US-01:Date before current date) Divorce Date 15/06/2017 of Sam occurs after current date 19/10/2016
+
+WARNING--(US-04:Marriage before divorce) Divorce Date 15/06/2017 of Sam occurs before marriage date 06/05/2018
+
+WARNING--Family ID F1 (US-18:Siblings as couple)The siblings are couple
+
+WARNING--Sprint-2(US-05:Marriage before death): James is dead before marriage
+
+WARNING--Sprint-2(US-08:Birth before marriage of parents): Eva is born before marriage
+
+WARNING--(US-01:Date before current date) Birth Date: 13/08/2018 of Leni occurs after current date 19/10/2016
+
+WARNING--(US-02:Birth before marriage) Marriage Date:  07/04/1963 of Leni occurs before birth date:13/08/2018
+
+WARNING--(US-03:Birth before death) Birth Date:13/08/2018 of Leni occurs after death date : 08/05/1900
+
+WARNING--Sprint-2(US-05:Marriage before death) Fred is dead before marriage
+
+WARNING--(US-23:Unique name and birth date) Individual John (I2) matches with another Individual (I99) with same name and birth date: Wed Apr 11 14:58:21 EDT 2018
+
+WARNING--(US-23:Unique name and birth date) Individual John (I99) matches with another Individual (I2) with same name and birth date: Wed Apr 11 14:58:21 EDT 2018
+
+WARNING--Sprint-2(US29	List deceased): Sam
+
+WARNING--Sprint-2(US29	List deceased): Leni
+
+WARNING--Sprint-2(US29	List deceased): Fred
