@@ -12,17 +12,18 @@ INDIVIDUAL INFORMATION
 ID	NAME		SEX	DOB		Alive		DOD		SPOUSE			CHILDREN
 -----*-----------*-----------*--------------*--------------*------------------*----------------------*-------------------------*
 I2	John		M	---		true		---	
-I99	John		M	---		true		---	
 I3	Sam		F	14/05/2008	false		13/06/2012	s->[Juliet,]		c->[Shaan,]		
 I4	Jeni		F	---		true		---	
 I5	Juliet		F	---		true		---		s->[dup,Sam,]		c->[Shaan,]		
 I6	Shaan		M	---		true		---	
-I7	James		M	---		true		---		s->[Cathy,Leni,]		c->[dup,Sam,Eva,]		
-I8	Cathy		F	---		true		---		s->[James,]		c->[dup,Sam,]		
+I7	James		M	---		true		---		s->[Cathy,Sony,Leni,]		c->[dup,Sam,Eva,]		
+I8	Cathy		F	---		true		---		s->[James,Sony,]		c->[dup,Sam,]		
 I9	Leni		F	13/08/2018	false		08/05/1900	s->[James,]		c->[Eva,]		
 I10	Fred		M	11/04/1970	false		09/06/2014	s->[Lilly,]		c->[]		
 I11	Lilly		F	---		true		---		s->[Fred,]		c->[]		
 I12	Eva		F	---		true		---	
+I13	Sony		F	---		true		---		s->[James,Cathy,]		c->[dup,Sam,]		
+I99	John		M	---		true		---	
 
 
 ----------------------------------------List of Warnings or Errors------------------------------------------------
@@ -59,12 +60,12 @@ WARNING--Sprint-1(US-03:Birth before death): Birth Date:13/08/2018 of Leni occur
 
 WARNING--Sprint-2(US-05:Marriage before death): Fred is dead before marriage
 
-WARNING--Sprint-2(US-23:Unique name and birth date): Individual John (I2) matches with another Individual (I99) with same name and birth date: Wed Apr 11 16:38:32 EDT 2018
-
-WARNING--Sprint-2(US-23:Unique name and birth date): Individual John (I99) matches with another Individual (I2) with same name and birth date: Wed Apr 11 16:38:32 EDT 2018
+WARNING--Sprint-2(US-23:Unique name and birth date): Individual John (I2) matches with another Individual (I99) with same name and birth date: Wed Apr 11 16:43:15 EDT 2018
 
 WARNING--Sprint-2(US-29:List deceased): Sam
 
 WARNING--Sprint-2(US-29:List deceased): Leni
 
 WARNING--Sprint-2(US-29:List deceased): Fred
+
+WARNING--Sprint-2(US-23:Unique name and birth date): Individual John (I99) matches with another Individual (I2) with same name and birth date: Wed Apr 11 16:43:15 EDT 2018
