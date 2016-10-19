@@ -6,13 +6,16 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collection;
 import java.util.Date;
-import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.TreeMap;
+import java.util.Set;
+
+import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils.Collections;
 
 public class FileParser {
 	 private String fPath;
@@ -307,7 +310,8 @@ public class FileParser {
 	            //String surName = individuals.get(i).getSurName();
 	            Date birth = (Date)value.getBirth();
 	            String id = (String)value.getId();
-	            if (indGivenName!= null && indBirth != null && givenName!=null && birth!=null )
+	            //System.out.println("hiiii");
+	            if (indGivenName!= null && indBirth != null && givenName!=null && birth!=null && !indid.equals(id) )
 				{
 					if (indGivenName.equals(givenName) && indBirth.equals(birth)) 
 					{
@@ -315,11 +319,11 @@ public class FileParser {
 					}
 				}
 	        }
-	        return true;
+	        //return true;
 	    }
 		
 		//Shubham Sprint-2
-		public void sibingsShouldNotMarry (FamilyInfo fam)
+	/*	public void sibingsShouldNotMarry (FamilyInfo fam)
 		{
 			List<String> childList = Collection.sort(fam.getChild());
 			
@@ -345,7 +349,7 @@ public class FileParser {
 			}
 			
 			
-		}
+		}*/
 		
 		
 		private void checkMarriageBeforeDivorce(FamInfo fa) {
