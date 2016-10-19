@@ -4,7 +4,7 @@ public class ParseMain {
 
 	public static void main(String[] args) {
 		// Change the path of file
-		String path = "C:/Users/Shubhsz/Desktop/agile/DPS-04/agileProject/Sprint 1.ged";
+		String path ="W:/GitHub-Work/DPS-04/agileProject/Sprint 1.ged";
 		//String path = "C:/Users/Shubhsz/Downloads/Family-2-18-Oct-2016-631.ged";
 /*<<<<<<< HEAD
 		 String path = "C:/Users/pkama/OneDrive/Documents/GitHub/DPS-04/agileProject/Sprint 1.ged";
