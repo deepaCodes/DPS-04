@@ -19,14 +19,6 @@
 1 SEX M
 1 BIRT
 2 DATE 11 APR 2018
-0 @I99@ INDI
-1 NAME John /Rooney/
-2 GIVN John
-2 SURN Rooney
-2 _MARNM Rooney
-1 SEX M
-1 BIRT
-2 DATE 11 APR 2018
 0 @I3@ INDI
 1 NAME dup /Rooney/
 2 GIVN dup
@@ -136,6 +128,24 @@
 1 BIRT
 2 DATE 7 MAY 1881
 1 FAMC @F3@
+0 @I13@ INDI
+1 NAME Sony /Rooney/
+2 GIVN Sony
+2 SURN Rooney
+2 _MARNM Rooney
+1 SEX F
+1 BIRT
+2 DATE 7 MAY 1990
+1 FAMS @F2@
+1 FAMC @F7@
+0 @I99@ INDI
+1 NAME John /Rooney/
+2 GIVN John
+2 SURN Rooney
+2 _MARNM Rooney
+1 SEX M
+1 BIRT
+2 DATE 11 APR 2018
 0 @F1@ FAM
 1 HUSB @I3@
 1 WIFE @I5@
