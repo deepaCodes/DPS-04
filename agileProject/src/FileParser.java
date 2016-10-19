@@ -178,18 +178,18 @@ public class FileParser {
 	            //Sprint-1 Check for correct Genders for Husband and Wife
 	            if(indiMap.get((fa.getValue().getHusbId())).getGender().equals("F")){
 	                //System.err.println("WARNING-- Husband Gender of "+fa.getValue().getHusbId() +" cannot be female");
-	                warnings.add("\nWARNING--Sprint-1(US-21:Correct gender for role) Husband Gender of "+fa.getValue().getHusbId()+" belonging to family "+fa.getValue().getFid() +" cannot be female");
+	                warnings.add("\nWARNING--Sprint-1(US-21:Correct gender for role): Husband Gender of "+fa.getValue().getHusbId()+" belonging to family "+fa.getValue().getFid() +" cannot be female");
 	            }
 
 	            if(indiMap.get((fa.getValue().getWifeId())).getGender().equals("M")){
 	                //System.err.println("WARNING-- Wife Gender cannot be male");
-	                warnings.add("\nWARNING--Sprint-1(US-21:Correct gender for role) Wife Gender of "+fa.getValue().getWifeId()+" belonging to family "+fa.getValue().getFid() +" cannot be male");
+	                warnings.add("\nWARNING--Sprint-1(US-21:Correct gender for role): Wife Gender of "+fa.getValue().getWifeId()+" belonging to family "+fa.getValue().getFid() +" cannot be male");
 
 	            }
 	            //Sprint-2 US05	Marriage before death
 	            if((indiMap.get((fa.getValue().getHusbId())).getDeath()!=null)) {
 	            	if(indiMap.get((fa.getValue().getHusbId())).getDeath().before(fa.getValue().getMarr())){
-	            		warnings.add("\nWARNING--Sprint-2(US-05:Marriage before death) "+indiMap.get((fa.getValue().getHusbId())).getName()+" is dead before marriage" );
+	            		warnings.add("\nWARNING--Sprint-2(US-05:Marriage before death): "+indiMap.get((fa.getValue().getHusbId())).getName()+" is dead before marriage" );
 	            		
 	            	}
 	            }
@@ -258,12 +258,12 @@ public class FileParser {
 	            //Sprint-1 check for Date before current date
 	            //check marriage date
 	            if(fa.getValue().getMarr()!=null && fa.getValue().getMarr().after(new Date())){
-	                warnings.add("\nWARNING--Sprint-1(US-01:Date before current date) Marriage Date "+sdf.format(fa.getValue().getMarr()) +" of "+indiMap.get(fa.getValue().getHusbId()).getName()+" occurs after current date "+sdf.format(currentDate));
+	                warnings.add("\nWARNING--Sprint-1(US-01:Date before current date): Marriage Date "+sdf.format(fa.getValue().getMarr()) +" of "+indiMap.get(fa.getValue().getHusbId()).getName()+" occurs after current date "+sdf.format(currentDate));
 	            }
 
 	            //check divorce date
 	            if(fa.getValue().getDiv()!=null && fa.getValue().getDiv().after(new Date())){
-	                warnings.add("\nWARNING--Sprint-1(US-01:Date before current date) Divorce Date "+sdf.format(fa.getValue().getDiv()) +" of "+indiMap.get(fa.getValue().getHusbId()).getName()+" occurs after current date "+sdf.format(currentDate));
+	                warnings.add("\nWARNING--Sprint-1(US-01:Date before current date): Divorce Date "+sdf.format(fa.getValue().getDiv()) +" of "+indiMap.get(fa.getValue().getHusbId()).getName()+" occurs after current date "+sdf.format(currentDate));
 
 	            }
 
@@ -321,7 +321,7 @@ public class FileParser {
 	            	String dt2 = birth.toString();
 					if (indGivenName.equalsIgnoreCase(givenName) && dt1.equalsIgnoreCase(dt2)) 
 					{
-						warnings.add("\nWARNING--Sprint-2(US-23:Unique name and birth date) Individual "+ indGivenName + " (" +indid +") " +"matches with another Individual" +" (" +id +") " + "with same name and birth date: " + birth);
+						warnings.add("\nWARNING--Sprint-2(US-23:Unique name and birth date): Individual "+ indGivenName + " (" +indid +") " +"matches with another Individual" +" (" +id +") " + "with same name and birth date: " + birth);
 					}
 				}
 	        }
@@ -357,7 +357,7 @@ public class FileParser {
 				}
 				if(count>1)
 				{
-					warnings.add("\nWARNING--Sprint-2(US-18:Siblings as couple)Family ID "+fmly.getfId()+" The siblings are couple");
+					warnings.add("\nWARNING--Sprint-2(US-18:Siblings as couple): Family ID "+fmly.getfId()+" The siblings are couple");
 				}
 			}
 			
@@ -369,7 +369,7 @@ public class FileParser {
 	    	SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 	    	Date currentDate = new Date();
 	        if( fa.getDiv()!=null && fa.getMarr()!=null && fa.getDiv().before(fa.getMarr())){
-	            warnings.add("\nWARNING--Sprint-1(US-04:Marriage before divorce) Divorce Date "+sdf.format(fa.getDiv()) +" of "+indiMap.get(fa.getHusbId()).getName()+" occurs before marriage date "+sdf.format(fa.getMarr()));
+	            warnings.add("\nWARNING--Sprint-1(US-04:Marriage before divorce): Divorce Date "+sdf.format(fa.getDiv()) +" of "+indiMap.get(fa.getHusbId()).getName()+" occurs before marriage date "+sdf.format(fa.getMarr()));
 
 	        }
 	    }
@@ -378,7 +378,7 @@ public class FileParser {
 	    	SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 	    	Date currentDate = new Date();
 	        if(individualInfo_.getDeath()!=null && individualInfo_.getBirth()!=null && individualInfo_.getBirth().after(individualInfo_.getDeath())){
-	            warnings.add("\nWARNING--Sprint-1(US-01:Date before current date) Birth Date: "+sdf.format(individualInfo_.getBirth()) +" of "+individualInfo_.getName()+" occurs after current date "+sdf.format(currentDate));
+	            warnings.add("\nWARNING--Sprint-1(US-01:Date before current date): Birth Date: "+sdf.format(individualInfo_.getBirth()) +" of "+individualInfo_.getName()+" occurs after current date "+sdf.format(currentDate));
 	        }
 	    }
 
@@ -386,7 +386,7 @@ public class FileParser {
 	    	SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 	    	Date currentDate = new Date();
 	        if(individualInfo_.getBirth()!=null && individualInfo_.getDeath()!=null && individualInfo_.getDeath().after(new Date())){
-	            warnings.add("\nWARNING--Sprint-1(US-01:Date before current date) Death Date: "+sdf.format(individualInfo_.getBirth()) +" of "+individualInfo_.getName()+" occurs after current date"+sdf.format(currentDate));
+	            warnings.add("\nWARNING--Sprint-1(US-01:Date before current date): Death Date: "+sdf.format(individualInfo_.getBirth()) +" of "+individualInfo_.getName()+" occurs after current date"+sdf.format(currentDate));
 	        }
 	    }
 		//US-02 Shubham Sprint 1
@@ -401,7 +401,7 @@ public class FileParser {
 					Date husBirth = indiMap.get(fa.getHusbId()).getBirth();
 					if(husBirth.after(marrDate))
 					{
-						warnings.add("\nWARNING--Sprint-1(US-02:Birth before marriage) Marriage Date:" + sdf.format(fa.getMarr())+ " of "+indiMap.get(fa.getHusbId()).getName()+" occurs before birth date:"+ sdf.format(indiMap.get(fa.getHusbId()).getBirth()));
+						warnings.add("\nWARNING--Sprint-1(US-02:Birth before marriage): Marriage Date:" + sdf.format(fa.getMarr())+ " of "+indiMap.get(fa.getHusbId()).getName()+" occurs before birth date:"+ sdf.format(indiMap.get(fa.getHusbId()).getBirth()));
 					}
 				}
 				if(fa.getWifeId()!=null)
@@ -409,7 +409,7 @@ public class FileParser {
 					Date wifeBirth = indiMap.get(fa.getWifeId()).getBirth();
 					if(wifeBirth.after(marrDate))
 					{
-						warnings.add("\nWARNING--Sprint-1(US-02:Birth before marriage) Marriage Date:  "+ sdf.format(fa.getMarr())+ " of "+indiMap.get(fa.getWifeId()).getName()+" occurs before birth date:"+sdf.format(indiMap.get(fa.getWifeId()).getBirth()));
+						warnings.add("\nWARNING--Sprint-1(US-02:Birth before marriage): Marriage Date: "+ sdf.format(fa.getMarr())+ " of "+indiMap.get(fa.getWifeId()).getName()+" occurs before birth date:"+sdf.format(indiMap.get(fa.getWifeId()).getBirth()));
 					}
 				}
 			}
@@ -418,7 +418,7 @@ public class FileParser {
 		private void checkDeathBeforeBirth(IndividualInfo individualInfo_) 
 		 { SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 	        if(individualInfo_.getDeath()!=null && individualInfo_.getBirth()!=null && individualInfo_.getBirth().after(individualInfo_.getDeath())){
-	            warnings.add("\nWARNING--Sprint-1(US-03:Birth before death) Birth Date:"+ sdf.format(individualInfo_.getBirth()) +" of "+ individualInfo_.getName() +" occurs after death date : "+  sdf.format(individualInfo_.getDeath()));
+	            warnings.add("\nWARNING--Sprint-1(US-03:Birth before death): Birth Date:"+ sdf.format(individualInfo_.getBirth()) +" of "+ individualInfo_.getName() +" occurs after death date : "+  sdf.format(individualInfo_.getDeath()));
 	        }
 	    }
 		
@@ -435,7 +435,7 @@ public class FileParser {
 	            IndividualInfo value = i.getValue();
 	            //List all the dead people
 	            if(!value.isAlive()){
-	            	warnings.add("\nWARNING--Sprint-2(US29	List deceased): "+value.getName());
+	            	warnings.add("\nWARNING--Sprint-2(US-29:List deceased): "+value.getName());
 	            }
 	            System.out.print(value.getId() + "\t");
 	            if (value == null) {
