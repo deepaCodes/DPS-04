@@ -3,17 +3,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Collection;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Set;
 import java.util.*;
 
 import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils.Collections;
@@ -515,16 +507,29 @@ public class FileParser {
 	    }
 		
 		
+		public int findAge(Date target){
+			Calendar currDate = Calendar.getInstance();
+			// System.out.println(currDate);
+			 		 
+			 int age = currDate.get(Calendar.YEAR) - target.getYear();
+			 
+			
+			return age-1900;
+		}
+		
 	    public void displayindividualInfo(Map<String, FamInfo> fmap) {
 	        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
 	        // display individual information
 
-	        System.out.println("ID\tNAME\t\tSEX\tDOB\t\tAlive\t\tDOD\t\tSPOUSE\t\t\tCHILDREN");
-	        System.out.println("-----*-----------*-----------*--------------*--------------*------------------*----------------------*-------------------------*");
+	        System.out.println("ID\tNAME\t\tSEX\tDOB\t\tAlive\t\tDOD\t\tAGE(US-27)\tSPOUSE\t\t\tCHILDREN");
+	        System.out.println("-----*-----------*-----------*--------------*--------------*------------------*--------*--------------------*-------------------------*");
 
 	        for (Entry<String, IndividualInfo> i : indiMap.entrySet()) {
 	            IndividualInfo value = i.getValue();
+	            //calculate age of individuals
+	           int age= findAge(i.getValue().getBirth());
+	            
 	            //List all the dead people
 	            if(!value.isAlive()){
 	            	warnings.add("\nWARNING--Sprint-2(US-29:List deceased): "+value.getName());
@@ -536,7 +541,7 @@ public class FileParser {
 
 	            System.out.print(value.getName() + "\t\t");
 	            System.out.print(value.getGender() + "\t");
-	            if (value.getDeath() != null) {
+	            if (value.getBirth()!= null) {
 	                System.out.print(sdf.format(value.getBirth()) + "");
 	            }else{
 	            	System.out.print("---\t");
@@ -547,6 +552,8 @@ public class FileParser {
 	            }else{
 	            	System.out.print("\t\t---\t");
 	            }
+	            System.out.print("\t"+age);
+
 
 	            if (!value.getSpouseFamilyList().isEmpty()) {
 
@@ -598,7 +605,6 @@ public class FileParser {
 	                System.out.print("c->" + sb.toString() + "\t\t");
 
 	            }
-
 	            System.out.println();
 				
 				//Shubham
