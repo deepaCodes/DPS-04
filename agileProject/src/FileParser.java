@@ -284,6 +284,10 @@ public class FileParser {
 	            checkDeathBeforeBirth(indiMap.get((fa.getValue().getHusbId())));
 	            
 	            sibingsShouldNotMarry(fa.getValue());
+	            
+	            maleLastNames(fa.getValue());
+	            
+	            marriageAfter14(fa.getValue());
 				
 				
 
@@ -293,7 +297,75 @@ public class FileParser {
 	            System.out.println();
 	        }
 	    }
+	  //Shubham Sprint 3
+	    
+	        
+	    
+	    //Shubham Sprint 3
+	    
+	    
+	    public void marriageAfter14(FamInfo fam) {
+	    	//warnings.add("Hallelujah");
+	    	Date marr_date = fam.getMarr();
+	    	Date wife_birthDate = indiMap.get(fam.getWifeId()).getBirth();
+	    	Date husb_birthDate = indiMap.get(fam.getHusbId()).getBirth();
+	    	
+            try {
+                //SimpleDateFormat format = new SimpleDateFormat("dd MMM yyyy");
 
+                //Date wifebirthDate = format.parse(wife_birthDate.toString());
+                //Date husbandbirthDate = format.parse(husb_birthDate.toString());
+                //Date marriageDate = format.parse(marr_date.toString());
+
+                long wifediff = marr_date.getTime() - wife_birthDate.getTime();
+                long wifediffHours = wifediff / (60 * 60 * 1000);
+                long wifediffDays = wifediffHours / 24; // 48
+                long wifediffYear = wifediffDays / 365;
+                //warnings.add("Wife age at Marriage:"+wifediffYear);
+                
+                long husbdiff = marr_date.getTime() - husb_birthDate.getTime();
+                long husbdiffHours = husbdiff / (60 * 60 * 1000);
+                long husbdiffDays = husbdiffHours / 24; // 48
+                long husbdiffYear = husbdiffDays / 365;
+                //warnings.add("Husband age at Marriage:"+husbdiffYear);
+                if (wifediffYear < 14) {
+                	warnings.add("\nWARNING--Sprint-3(US-10:Marriage after 14): Marriage should occur after 14 years for "+ indiMap.get(fam.getWifeId()).getName() +" (" +indiMap.get(fam.getWifeId()).getId() +") "+ "in Family " +fam.getFid());
+                }
+                
+                if (husbdiffYear < 14) {
+                	warnings.add("\nWARNING--Sprint-3(US-10:Marriage after 14): Marriage should occur after 14 years for "+ indiMap.get(fam.getHusbId()).getName() +" (" +indiMap.get(fam.getHusbId()).getId() +") "+ "in Family " +fam.getFid());
+                }
+            } catch (Exception ex) {
+            	warnings.add(ex.toString());
+            }
+        }
+	    
+	    public void maleLastNames(FamInfo fam) 
+	    {
+            List<String> nameStringList = new ArrayList<String>();
+            
+            nameStringList.add(indiMap.get(fam.getHusbId()).getName());
+
+            for (int i = 0; i < fam.getChildId().size(); i++) {
+            	//warnings.add("Gender:"+indiMap.get(fam.getChildId().get(i)).getGender());
+                if (indiMap.get(fam.getChildId().get(i)).getGender().equals("M"))
+                    nameStringList.add(indiMap.get(fam.getChildId().get(i)).getName());
+            }
+            //warnings.add("Size of list:"+nameStringList);
+            
+            for (int i = 0; i < nameStringList.size(); i++) {
+                for (int j = i + 1; j < nameStringList.size(); j++) {
+                    if (!nameStringList.get(i).equals(nameStringList.get(j)))
+                    	warnings.add("\nWARNING--Sprint-3(US-16:Male last names): " +nameStringList.get(i) + " and " +nameStringList.get(j) +" of family " +fam.getFid()+ " have different last names");
+
+                        
+                }
+            }
+            
+        }
+	    
+	    
+	    
 		//Shubham Sprint 2
 		private void checkUniqueNameBirth(IndividualInfo ind) 
 		{
