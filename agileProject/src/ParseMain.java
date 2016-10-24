@@ -4,18 +4,13 @@ public class ParseMain {
 
 	public static void main(String[] args) {
 		
-		String path = "C:/Users/Shubhsz/Desktop/agile/DPS-04/agileProject/Sprint 1.ged";
-
-		// Change the path of file
-		//String path ="W:/GitHub-Work/DPS-04/agileProject/Sprint 1.ged";
-		//String path = "C:/Users/Shubhsz/Downloads/Family-2-18-Oct-2016-631.ged";
-/*<<<<<<< HEAD
-		 String path = "C:/Users/pkama/OneDrive/Documents/GitHub/DPS-04/agileProject/Sprint 1.ged";
-
-=======
-		 String path = "W:/GitHub-Work/DPS-04/agileProject/Sprint 1.ged";
-		 //String path = "C:/Users/Shubhsz/Desktop/agile/DPS-04/agileProject/Sprint 1.ged";
->>>>>>> origin/master*/
+		String path = "W:/Tech Study/Agile/P02/TempGedcom.txt";
+/*
+		Change the path of file
+		String path ="W:/GitHub-Work/DPS-04/agileProject/Sprint 1.ged";
+		String path = "C:/Users/pkama/OneDrive/Documents/GitHub/DPS-04/agileProject/Sprint 1.ged";
+	    String path = "C:/Users/Shubhsz/Desktop/agile/DPS-04/agileProject/Sprint 1.ged";
+*/
 	        FileParser fp = new FileParser(path);
 	        fp.parseFile();
 

@@ -174,6 +174,25 @@ public class FileParser {
 	            //Display the names of husband and wife
 	            String husbName =indiMap.get((fa.getValue().getHusbId())).getName() ;
 	            String wifeName =indiMap.get((fa.getValue().getWifeId())).getName() ;
+	            
+	            //Sprint-3 Divorce before death
+	            if(!(indiMap.get(fa.getValue().getHusbId()).isAlive()) || !(indiMap.get(fa.getValue().getWifeId()).isAlive())){
+	            	if((!(indiMap.get(fa.getValue().getHusbId()).isAlive())) &&(fa.getValue().getDiv()!=null)){
+	            		if(indiMap.get(fa.getValue().getHusbId()).getDeath().before(fa.getValue().getDiv())){
+	            			warnings.add("\nWARNING--Sprint-3(US-06:Divorce before death): Husband "+fa.getValue().getHusbId()
+	            					     +" is dead before his divorce");
+	            		}
+	            		
+	            	}
+	            	
+	            	if( !(indiMap.get(fa.getValue().getWifeId()).isAlive())&&(fa.getValue().getDiv()!=null)){
+	            		if(indiMap.get(fa.getValue().getWifeId()).getDeath().before(fa.getValue().getDiv())){
+	            			warnings.add("\nWARNING--Sprint-3(US-06:Divorce before death): Wife "+fa.getValue().getHusbId()
+	            					     +"is dead before his divorce");
+	            		}
+	            		
+	            	}
+	            }
 
 	            //Sprint-1 Check for correct Genders for Husband and Wife
 	            if(indiMap.get((fa.getValue().getHusbId())).getGender().equals("F")){
@@ -201,6 +220,7 @@ public class FileParser {
 	            	
 	            }
 	            
+	                        
 	            //Sprint-2 US08 Birth before marriage of parents
 	            if(fa.getValue().getChildId()!=null){
 	            	for(String child:fa.getValue().getChildId()){
