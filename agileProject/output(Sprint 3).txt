@@ -67,85 +67,13 @@ WARNING--Sprint-1(US-01:Date before current date): Divorce Date 15/06/2017 of Sa
 
 WARNING--Sprint-1(US-04:Marriage before divorce): Divorce Date 15/06/2017 of Sam occurs before marriage date 06/05/2018
 
-WARNING--Sprint-3(US-16:Male last names): Sam and Shaan of family F1 have different last names
+WARNING--Sprint-3(US-16:Male last names): /Rooney/ and /Sen/ of family F1 have different last names
 
 WARNING--Sprint-3(US-10:Marriage after 14): Marriage should occur after 14 years for Sam (I3) in Family F1
 
 WARNING--Sprint-3(US-15:Family (F2) should have fewer than 15 siblings.
 
 WARNING--Sprint-3(US-33:Large age difference) Husband: James and Wife: Cathy
-
-WARNING--Sprint-3(US-16:Male last names): James and Rob of family F2 have different last names
-
-WARNING--Sprint-3(US-16:Male last names): James and Tim of family F2 have different last names
-
-WARNING--Sprint-3(US-16:Male last names): James and Jacob of family F2 have different last names
-
-WARNING--Sprint-3(US-16:Male last names): James and Alex of family F2 have different last names
-
-WARNING--Sprint-3(US-16:Male last names): James and Shwant of family F2 have different last names
-
-WARNING--Sprint-3(US-16:Male last names): James and John of family F2 have different last names
-
-WARNING--Sprint-3(US-16:Male last names): James and Ian of family F2 have different last names
-
-WARNING--Sprint-3(US-16:Male last names): James and Neil of family F2 have different last names
-
-WARNING--Sprint-3(US-16:Male last names): Rob and Tim of family F2 have different last names
-
-WARNING--Sprint-3(US-16:Male last names): Rob and Jacob of family F2 have different last names
-
-WARNING--Sprint-3(US-16:Male last names): Rob and Alex of family F2 have different last names
-
-WARNING--Sprint-3(US-16:Male last names): Rob and Shwant of family F2 have different last names
-
-WARNING--Sprint-3(US-16:Male last names): Rob and John of family F2 have different last names
-
-WARNING--Sprint-3(US-16:Male last names): Rob and Ian of family F2 have different last names
-
-WARNING--Sprint-3(US-16:Male last names): Rob and Neil of family F2 have different last names
-
-WARNING--Sprint-3(US-16:Male last names): Tim and Jacob of family F2 have different last names
-
-WARNING--Sprint-3(US-16:Male last names): Tim and Alex of family F2 have different last names
-
-WARNING--Sprint-3(US-16:Male last names): Tim and Shwant of family F2 have different last names
-
-WARNING--Sprint-3(US-16:Male last names): Tim and John of family F2 have different last names
-
-WARNING--Sprint-3(US-16:Male last names): Tim and Ian of family F2 have different last names
-
-WARNING--Sprint-3(US-16:Male last names): Tim and Neil of family F2 have different last names
-
-WARNING--Sprint-3(US-16:Male last names): Jacob and Alex of family F2 have different last names
-
-WARNING--Sprint-3(US-16:Male last names): Jacob and Shwant of family F2 have different last names
-
-WARNING--Sprint-3(US-16:Male last names): Jacob and John of family F2 have different last names
-
-WARNING--Sprint-3(US-16:Male last names): Jacob and Ian of family F2 have different last names
-
-WARNING--Sprint-3(US-16:Male last names): Jacob and Neil of family F2 have different last names
-
-WARNING--Sprint-3(US-16:Male last names): Alex and Shwant of family F2 have different last names
-
-WARNING--Sprint-3(US-16:Male last names): Alex and John of family F2 have different last names
-
-WARNING--Sprint-3(US-16:Male last names): Alex and Ian of family F2 have different last names
-
-WARNING--Sprint-3(US-16:Male last names): Alex and Neil of family F2 have different last names
-
-WARNING--Sprint-3(US-16:Male last names): Shwant and John of family F2 have different last names
-
-WARNING--Sprint-3(US-16:Male last names): Shwant and Ian of family F2 have different last names
-
-WARNING--Sprint-3(US-16:Male last names): Shwant and Neil of family F2 have different last names
-
-WARNING--Sprint-3(US-16:Male last names): John and Ian of family F2 have different last names
-
-WARNING--Sprint-3(US-16:Male last names): John and Neil of family F2 have different last names
-
-WARNING--Sprint-3(US-16:Male last names): Ian and Neil of family F2 have different last names
 
 WARNING--Sprint-2(US-05:Marriage before death): James is dead before marriage
 
@@ -159,7 +87,7 @@ WARNING--Sprint-1(US-02:Birth before marriage): Marriage Date: 07/04/1963 of Len
 
 WARNING--Sprint-1(US-03:Birth before death): Birth Date:13/08/2018 of Leni occurs after death date : 08/05/1900
 
-WARNING--Sprint-3(US-16:Male last names): James and Evan of family F3 have different last names
+WARNING--Sprint-3(US-16:Male last names): /Rooney/ and /Rohny/ of family F3 have different last names
 
 WARNING--Sprint-3(US-10:Marriage after 14): Marriage should occur after 14 years for Leni (I9) in Family F3
 
@@ -175,7 +103,7 @@ WARNING--Sprint-3(US-06:Divorce before death): Husband I14 is dead before his di
 
 WARNING--Sprint-3(US-33:Large age difference) Husband: Mark and Wife: Mary
 
-WARNING--Sprint-2(US-23:Unique name and birth date): Individual John (I1) matches with another Individual (I16) with same name and birth date: Wed Apr 11 21:30:21 EDT 2018
+WARNING--Sprint-2(US-23:Unique name and birth date): Individual John (I1) matches with another Individual (I16) with same name and birth date: Wed Apr 11 23:41:48 EDT 2018
 
 WARNING--Sprint-2(US-29:List deceased): dup
 
@@ -187,4 +115,4 @@ WARNING--Sprint-2(US-29:List deceased): Fred
 
 WARNING--Sprint-2(US-29:List deceased): Mark
 
-WARNING--Sprint-2(US-23:Unique name and birth date): Individual John (I16) matches with another Individual (I1) with same name and birth date: Wed Apr 11 21:30:21 EDT 2018
+WARNING--Sprint-2(US-23:Unique name and birth date): Individual John (I16) matches with another Individual (I1) with same name and birth date: Wed Apr 11 23:41:48 EDT 2018
