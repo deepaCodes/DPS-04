@@ -33,6 +33,7 @@ public class FileParser {
 	            String tagName;
 	            String thridArg = null;
 	            String line = null;
+	            String lastName = null;
 	            List<String> tagList = this.getValidTags();
 	            // Read a line
 	            IndividualInfo iInfo = null;
@@ -70,6 +71,7 @@ public class FileParser {
 	                        case "NAME":
 
 	                            iInfo.setName(thridArg);
+	                            iInfo.setLastName(split[3]);
 	                            break;
 	                        case "SEX":
 
@@ -392,14 +394,14 @@ public class FileParser {
 	    {
             List<String> nameStringList = new ArrayList<String>();
             
-            nameStringList.add(indiMap.get(fam.getHusbId()).getName());
+            nameStringList.add(indiMap.get(fam.getHusbId()).getLastName());
 
             for (int i = 0; i < fam.getChildId().size(); i++) {
             	//warnings.add("Gender:"+indiMap.get(fam.getChildId().get(i)).getGender());
                 if (indiMap.get(fam.getChildId().get(i)).getGender().equals("M"))
-                    nameStringList.add(indiMap.get(fam.getChildId().get(i)).getName());
+                    nameStringList.add(indiMap.get(fam.getChildId().get(i)).getLastName());
             }
-            //warnings.add("Size of list:"+nameStringList);
+            //warnings.add("Size of list:"+nameStringList.toString());
             
             for (int i = 0; i < nameStringList.size(); i++) {
                 for (int j = i + 1; j < nameStringList.size(); j++) {

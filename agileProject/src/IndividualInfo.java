@@ -11,6 +11,7 @@ public class IndividualInfo {
     private boolean alive;
     private Date death;
     private int age;
+    private String lastName;
 
     private List<String> childFamilyList = new ArrayList<String>();
     private List<String> spouseFamilyList = new ArrayList<>();
@@ -42,6 +43,14 @@ public class IndividualInfo {
 
     public void setAge(int age){
     	this.age=age;
+    }
+    
+    public String getLastName(){
+    	return lastName;
+    }
+
+    public void setLastName(String lastName){
+    	this.lastName=lastName;
     }
     
     public String getId() {
