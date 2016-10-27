@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.Map.Entry;
 import java.util.*;
 
+import com.sun.org.apache.bcel.internal.generic.INVOKEVIRTUAL;
 import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils.Collections;
 
 public class FileParser {
@@ -266,8 +267,18 @@ public class FileParser {
 	            	}
 	            }
 	          
+	            //Sprint-3 US15 by Pooja Kamat	
+	            if(fa.getValue().getChildId().size()>=15){
+	            	warnings.add("\nWARNING--Sprint-3(US-15:Family ("+fa.getValue().getFid()+") should have fewer than 15 siblings." );
+	            	}
 	            
-	            //Sprint-1 check for Date before current date
+	            //Sprint-3 US33 by Pooja Kamat
+	            if(indiMap.get(fa.getValue().getHusbId()).getAge() >= 2*indiMap.get(fa.getValue().getWifeId()).getAge() || 2*indiMap.get(fa.getValue().getHusbId()).getAge() <= indiMap.get(fa.getValue().getWifeId()).getAge()){
+	            	warnings.add("\nWARNING--Sprint-3(US-33:Large age difference) Husband: " + indiMap.get(fa.getValue().getHusbId()).getName() +" and Wife: " + indiMap.get(fa.getValue().getWifeId()).getName());
+	            }
+
+	            
+	            //Sprint-1 US01- check for Date before current date by Pooja Kamat
 	            //check marriage date
 	            if(fa.getValue().getMarr()!=null && fa.getValue().getMarr().after(new Date())){
 	                warnings.add("\nWARNING--Sprint-1(US-01:Date before current date): Marriage Date "+sdf.format(fa.getValue().getMarr()) +" of "+indiMap.get(fa.getValue().getHusbId()).getName()+" occurs after current date "+sdf.format(currentDate));
@@ -301,8 +312,6 @@ public class FileParser {
 	            
 	            marriageAfter14(fa.getValue());
 				
-				
-
 	            System.out.print(husbName + "\t\t"
 	                    + wifeName + "\t"
 	                    + fa.getValue().getChildId());
@@ -311,11 +320,38 @@ public class FileParser {
 	    }
 	  //Shubham Sprint 3
 	    
+	   
+		//Sprint-1 by Pooja
+		private void checkMarriageBeforeDivorce(FamInfo fa) {
+	    	SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+	    	Date currentDate = new Date();
+	        if( fa.getDiv()!=null && fa.getMarr()!=null && fa.getDiv().before(fa.getMarr())){
+	            warnings.add("\nWARNING--Sprint-1(US-04:Marriage before divorce): Divorce Date "+sdf.format(fa.getDiv()) +" of "+indiMap.get(fa.getHusbId()).getName()+" occurs before marriage date "+sdf.format(fa.getMarr()));
+
+	        }
+	    }
+
+		//Sprint-1 by Pooja
+	    private void checkBirthDate(IndividualInfo individualInfo_) {
+	    	SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+	    	Date currentDate = new Date();
+	        if(individualInfo_.getDeath()!=null && individualInfo_.getBirth()!=null && individualInfo_.getBirth().after(individualInfo_.getDeath())){
+	            warnings.add("\nWARNING--Sprint-1(US-01:Date before current date): Birth Date: "+sdf.format(individualInfo_.getBirth()) +" of "+individualInfo_.getName()+" occurs after current date "+sdf.format(currentDate));
+	        }
+	    }
+
+	  //Sprint-1 by Pooja
+	    private void checkDeathDate(IndividualInfo individualInfo_) {
+	    	SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+	    	Date currentDate = new Date();
+	        if(individualInfo_.getBirth()!=null && individualInfo_.getDeath()!=null && individualInfo_.getDeath().after(new Date())){
+	            warnings.add("\nWARNING--Sprint-1(US-01:Date before current date): Death Date: "+sdf.format(individualInfo_.getBirth()) +" of "+individualInfo_.getName()+" occurs after current date"+sdf.format(currentDate));
+	        }
+	    }
 	        
 	    
 	    //Shubham Sprint 3
-	    
-	    
+	 
 	    public void marriageAfter14(FamInfo fam) {
 	    	//warnings.add("Hallelujah");
 	    	Date marr_date = fam.getMarr();
@@ -449,30 +485,6 @@ public class FileParser {
 		}
 		
 		
-		private void checkMarriageBeforeDivorce(FamInfo fa) {
-	    	SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-	    	Date currentDate = new Date();
-	        if( fa.getDiv()!=null && fa.getMarr()!=null && fa.getDiv().before(fa.getMarr())){
-	            warnings.add("\nWARNING--Sprint-1(US-04:Marriage before divorce): Divorce Date "+sdf.format(fa.getDiv()) +" of "+indiMap.get(fa.getHusbId()).getName()+" occurs before marriage date "+sdf.format(fa.getMarr()));
-
-	        }
-	    }
-
-	    private void checkBirthDate(IndividualInfo individualInfo_) {
-	    	SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-	    	Date currentDate = new Date();
-	        if(individualInfo_.getDeath()!=null && individualInfo_.getBirth()!=null && individualInfo_.getBirth().after(individualInfo_.getDeath())){
-	            warnings.add("\nWARNING--Sprint-1(US-01:Date before current date): Birth Date: "+sdf.format(individualInfo_.getBirth()) +" of "+individualInfo_.getName()+" occurs after current date "+sdf.format(currentDate));
-	        }
-	    }
-
-	    private void checkDeathDate(IndividualInfo individualInfo_) {
-	    	SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-	    	Date currentDate = new Date();
-	        if(individualInfo_.getBirth()!=null && individualInfo_.getDeath()!=null && individualInfo_.getDeath().after(new Date())){
-	            warnings.add("\nWARNING--Sprint-1(US-01:Date before current date): Death Date: "+sdf.format(individualInfo_.getBirth()) +" of "+individualInfo_.getName()+" occurs after current date"+sdf.format(currentDate));
-	        }
-	    }
 		//US-02 Shubham Sprint 1
 		private void checkMarriageBeforeBirth(FamInfo fa) 
 		{
@@ -512,8 +524,6 @@ public class FileParser {
 			// System.out.println(currDate);
 			 		 
 			 int age = currDate.get(Calendar.YEAR) - target.getYear();
-			 
-			
 			return age-1900;
 		}
 		
@@ -523,7 +533,7 @@ public class FileParser {
 	        // display individual information
 
 	        System.out.println("ID\tNAME\t\tSEX\tDOB\t\tAlive\t\tDOD\t\tAGE(US-27)\tSPOUSE\t\t\tCHILDREN");
-	        System.out.println("-----*-----------*-----------*--------------*--------------*------------------*--------*--------------------*-------------------------*");
+	        System.out.println("-----*-----------*-----------*--------------*--------------*------------------*----------*---------------------------*-------------------------*");
 
 	        for (Entry<String, IndividualInfo> i : indiMap.entrySet()) {
 	            IndividualInfo value = i.getValue();
@@ -577,7 +587,7 @@ public class FileParser {
 
 	                sb.append("]");
 	                
-	                System.out.print("\ts->"+ sb.toString() + "\t\t");
+	                System.out.print("\t\ts->"+ sb.toString() + "\t\t");
 
 	            }
 

@@ -4,6 +4,8 @@ import java.util.List;
 
 
 public class FamInfo {
+	
+	
 	private String fid;
     private String husbId;
     private String wifeId;

@@ -10,6 +10,7 @@ public class IndividualInfo {
     private Date birth;
     private boolean alive;
     private Date death;
+    private int age;
 
     private List<String> childFamilyList = new ArrayList<String>();
     private List<String> spouseFamilyList = new ArrayList<>();
@@ -35,8 +36,14 @@ public class IndividualInfo {
         this.spouseFamilyList = spouseFamilyList;
     }
 
+    public int getAge(){
+    	return age;
+    }
 
-
+    public void setAge(int age){
+    	this.age=age;
+    }
+    
     public String getId() {
         return id;
     }
