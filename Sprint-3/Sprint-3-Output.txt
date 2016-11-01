@@ -103,7 +103,7 @@ WARNING--Sprint-3(US-06:Divorce before death): Husband I14 is dead before his di
 
 WARNING--Sprint-3(US-34:Large age difference) Husband: Mark and Wife: Mary
 
-WARNING--Sprint-2(US-23:Unique name and birth date): Individual John (I1) matches with another Individual (I16) with same name and birth date: Wed Apr 11 09:32:57 EDT 2018
+WARNING--Sprint-2(US-23:Unique name and birth date): Individual John (I1) matches with another Individual (I16) with same name and birth date: Wed Apr 11 10:03:57 EDT 2018
 
 WARNING--Sprint-2(US-29:List deceased): dup
 
@@ -115,4 +115,4 @@ WARNING--Sprint-2(US-29:List deceased): Fred
 
 WARNING--Sprint-2(US-29:List deceased): Mark
 
-WARNING--Sprint-2(US-23:Unique name and birth date): Individual John (I16) matches with another Individual (I1) with same name and birth date: Wed Apr 11 09:32:57 EDT 2018
+WARNING--Sprint-2(US-23:Unique name and birth date): Individual John (I16) matches with another Individual (I1) with same name and birth date: Wed Apr 11 10:03:57 EDT 2018
