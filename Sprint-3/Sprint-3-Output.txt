@@ -59,7 +59,7 @@ WARNING--Sprint-2(US-08:Birth before divorce of parents): Shaan is born before d
 
 WARNING--Sprint-2(US-09:Birth before death of parents): Shaan is born after death of parents
 
-WARNING--Sprint-3(US-33:Large age difference) Husband: Sam and Wife: Juliet
+WARNING--Sprint-3(US-34:Large age difference) Husband: Sam and Wife: Juliet
 
 WARNING--Sprint-1(US-01:Date before current date): Marriage Date 06/05/2018 of Sam occurs after current date 01/11/2016
 
@@ -73,13 +73,13 @@ WARNING--Sprint-3(US-10:Marriage after 14): Marriage should occur after 14 years
 
 WARNING--Sprint-3(US-15:Family (F2) should have fewer than 15 siblings.
 
-WARNING--Sprint-3(US-33:Large age difference) Husband: James and Wife: Cathy
+WARNING--Sprint-3(US-34:Large age difference) Husband: James and Wife: Cathy
 
 WARNING--Sprint-2(US-05:Marriage before death): James is dead before marriage
 
 WARNING--Sprint-2(US-08:Birth before marriage of parents): Evan is born before marriage
 
-WARNING--Sprint-3(US-33:Large age difference) Husband: James and Wife: Leni
+WARNING--Sprint-3(US-34:Large age difference) Husband: James and Wife: Leni
 
 WARNING--Sprint-1(US-01:Date before current date): Birth Date: 13/08/2018 of Leni occurs after current date 01/11/2016
 
@@ -95,15 +95,15 @@ WARNING--Sprint-3(US-10:Marriage after 14): Marriage should occur after 14 years
 
 WARNING--Sprint-2(US-05:Marriage before death): Fred is dead before marriage
 
-WARNING--Sprint-3(US-33:Large age difference) Husband: Fred and Wife: Lilly
+WARNING--Sprint-3(US-34:Large age difference) Husband: Fred and Wife: Lilly
 
 WARNING--Sprint-3(US-10:Marriage after 14): Marriage should occur after 14 years for Lilly (I11) in Family F4
 
 WARNING--Sprint-3(US-06:Divorce before death): Husband I14 is dead before his divorce
 
-WARNING--Sprint-3(US-33:Large age difference) Husband: Mark and Wife: Mary
+WARNING--Sprint-3(US-34:Large age difference) Husband: Mark and Wife: Mary
 
-WARNING--Sprint-2(US-23:Unique name and birth date): Individual John (I1) matches with another Individual (I16) with same name and birth date: Wed Apr 11 09:24:04 EDT 2018
+WARNING--Sprint-2(US-23:Unique name and birth date): Individual John (I1) matches with another Individual (I16) with same name and birth date: Wed Apr 11 09:32:57 EDT 2018
 
 WARNING--Sprint-2(US-29:List deceased): dup
 
@@ -115,4 +115,4 @@ WARNING--Sprint-2(US-29:List deceased): Fred
 
 WARNING--Sprint-2(US-29:List deceased): Mark
 
-WARNING--Sprint-2(US-23:Unique name and birth date): Individual John (I16) matches with another Individual (I1) with same name and birth date: Wed Apr 11 09:24:04 EDT 2018
+WARNING--Sprint-2(US-23:Unique name and birth date): Individual John (I16) matches with another Individual (I1) with same name and birth date: Wed Apr 11 09:32:57 EDT 2018

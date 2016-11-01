@@ -276,7 +276,7 @@ public class FileParser {
 	            
 	            //Sprint-3 US33 by Pooja Kamat
 	            if(indiMap.get(fa.getValue().getHusbId()).getAge() >= 2*indiMap.get(fa.getValue().getWifeId()).getAge() || 2*indiMap.get(fa.getValue().getHusbId()).getAge() <= indiMap.get(fa.getValue().getWifeId()).getAge()){
-	            	warnings.add("\nWARNING--Sprint-3(US-33:Large age difference) Husband: " + indiMap.get(fa.getValue().getHusbId()).getName() +" and Wife: " + indiMap.get(fa.getValue().getWifeId()).getName());
+	            	warnings.add("\nWARNING--Sprint-3(US-34:Large age difference) Husband: " + indiMap.get(fa.getValue().getHusbId()).getName() +" and Wife: " + indiMap.get(fa.getValue().getWifeId()).getName());
 	            }
 
 	            
