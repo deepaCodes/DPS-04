@@ -379,7 +379,7 @@ public class FileParser {
 	    						if (birthDate_j != null && birthDate_k !=null){
 	    							int diff =(int) getDateDiff(birthDate_j,birthDate_k,TimeUnit.DAYS);
 	    							if (diff > 2 && diff <243){
-	    					            warnings.add("\nWARNING--Sprint-13(US13: Birth dates of siblings) : "+ childList.getName() + " (" +childList.getId()+")" +" and "+ innerChildList.getName()  + " (" +innerChildList.getId()+")" +" should be more than 8 months or less than 2 days apart in family "+fam.getDiv());
+	    					            warnings.add("\nWARNING--Sprint-4(US13: Birth dates of siblings) : "+ childList.getName() + " (" +childList.getId()+")" +" and "+ innerChildList.getName()  + " (" +innerChildList.getId()+")" +" should be more than 8 months or less than 2 days apart in family "+fam.getDiv());
 
 	    							}
 	    						}
@@ -413,7 +413,7 @@ public class FileParser {
 	            
 	            if (birthDate.compareTo(currentDate) < 0 && diffDays < 30) 
 	            {
-	            	warnings.add("\nWARNING--Sprint-35(US-35: List of Recent Birthdates) : " + " Individual is born in the last 30 days Id: " + indiInfo.getId() + " Name: " + indiInfo.getName()) ;
+	            	warnings.add("\nWARNING--Sprint-4(US-35: List of Recent Birthdates) : " + " Individual is born in the last 30 days Id: " + indiInfo.getId() + " Name: " + indiInfo.getName()) ;
 
 	            }
 	        } catch (Exception ex) {

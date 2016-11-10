@@ -66,9 +66,9 @@ WARNING--Sprint-2(US-09:Birth before death of parents): Shaan is born after deat
 
 WARNING--Sprint-3(US-34:Large age difference) Husband: Juliet and Wife: Sam
 
-WARNING--Sprint-1(US-01:Date before current date): Marriage Date 06/05/2018 of Juliet occurs after current date 09/11/2016
+WARNING--Sprint-1(US-01:Date before current date): Marriage Date 06/05/2018 of Juliet occurs after current date 10/11/2016
 
-WARNING--Sprint-1(US-01:Date before current date): Divorce Date 15/06/2017 of Juliet occurs after current date 09/11/2016
+WARNING--Sprint-1(US-01:Date before current date): Divorce Date 15/06/2017 of Juliet occurs after current date 10/11/2016
 
 WARNING--Sprint-1(US-04:Marriage before divorce): Divorce Date 15/06/2017 of Juliet occurs before marriage date 06/05/2018
 
@@ -80,9 +80,9 @@ WARNING--Sprint-3(US-34:Large age difference) Husband: James and Wife: Cathy
 
 WARNING--Sprint-2(US-18:Siblings as couple): Family ID F6 The siblings are couple
 
-WARNING--Sprint-13(US13: Birth dates of siblings) : Carol (I20) and Neil (I31) should be more than 8 months or less than 2 days apart in family null
+WARNING--Sprint-4(US13: Birth dates of siblings) : Carol (I20) and Neil (I31) should be more than 8 months or less than 2 days apart in family null
 
-WARNING--Sprint-13(US13: Birth dates of siblings) : Alex (I22) and Jacob (I21) should be more than 8 months or less than 2 days apart in family null
+WARNING--Sprint-4(US13: Birth dates of siblings) : Alex (I22) and Jacob (I21) should be more than 8 months or less than 2 days apart in family null
 
 WARNING--Sprint-2(US-05:Marriage before death): James is dead before marriage
 
@@ -90,7 +90,7 @@ WARNING--Sprint-2(US-08:Birth before marriage of parents): Evan is born before m
 
 WARNING--Sprint-3(US-34:Large age difference) Husband: James and Wife: Leni
 
-WARNING--Sprint-1(US-01:Date before current date): Birth Date: 13/08/2018 of Leni occurs after current date 09/11/2016
+WARNING--Sprint-1(US-01:Date before current date): Birth Date: 13/08/2018 of Leni occurs after current date 10/11/2016
 
 WARNING--Sprint-1(US-02:Birth before marriage): Marriage Date: 07/04/1963 of Leni occurs before birth date:13/08/2018
 
@@ -112,7 +112,7 @@ WARNING--Sprint-3(US-06:Divorce before death): Husband I14 is dead before his di
 
 WARNING--Sprint-3(US-34:Large age difference) Husband: Mark and Wife: Mary
 
-WARNING--Sprint-2(US-23:Unique name and birth date): Individual John (I1) matches with another Individual (I16) with same name and birth date: Wed Apr 11 23:08:10 EDT 2018
+WARNING--Sprint-2(US-23:Unique name and birth date): Individual John (I1) matches with another Individual (I16) with same name and birth date: Wed Apr 11 15:24:00 EDT 2018
 
 WARNING--Sprint-2(US-29:List deceased): Sam
 
@@ -122,6 +122,6 @@ WARNING--Sprint-2(US-29:List deceased): Fred
 
 WARNING--Sprint-2(US-29:List deceased): Mark
 
-WARNING--Sprint-2(US-23:Unique name and birth date): Individual John (I16) matches with another Individual (I1) with same name and birth date: Wed Apr 11 23:08:10 EDT 2018
+WARNING--Sprint-2(US-23:Unique name and birth date): Individual John (I16) matches with another Individual (I1) with same name and birth date: Wed Apr 11 15:24:00 EDT 2018
 
-WARNING--Sprint-35(US-35: List of Recent Birthdates) :  Individual is born in the last 30 days Id: I29 Name: Ian
+WARNING--Sprint-4(US-35: List of Recent Birthdates) :  Individual is born in the last 30 days Id: I29 Name: Ian
