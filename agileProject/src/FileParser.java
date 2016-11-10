@@ -18,6 +18,8 @@ public class FileParser {
 	    private Map<String, Family> familyMap = new LinkedHashMap<String, Family>();
 
 	    private List<String> warnings = new ArrayList<>();
+	    private List<String> livingMarried = new ArrayList<String>();
+	    private List<String> livingSingle = new ArrayList<String>();
 	    public FileParser(String fp) {
 	        fPath = fp;
 
@@ -609,6 +611,17 @@ public class FileParser {
 	            IndividualInfo value = i.getValue();
 	            //calculate age of individuals
 	           int age= findAge(i.getValue().getBirth());
+	           
+	           //Sprint-4 List living married 
+	            if(value.isAlive() && !( value.getSpouseFamilyList().size()==0)){
+	            		livingMarried.add("ID: "+value.getId()+"\t\tName: "+value.getName());
+	            }
+	            
+		     //Sprint-4 List living single
+	            if(value.isAlive() && age>30 &&(value.getSpouseFamilyList().size()==0)){
+           		livingSingle.add("ID: "+value.getId()+"\t\tName: "+value.getName());
+           }
+	           
 	            
 	            //List all the dead people
 	            if(!value.isAlive()){
@@ -701,6 +714,21 @@ public class FileParser {
 	            System.out.println(warn);
 	        }
 		}
+	    public void displayLivingMarried(){
+			System.out.println("\nWARNING--Sprint-4(US-30:List living married):");
+
+	    	for (String lm : livingMarried) {
+	    		System.out.println(lm);
+			}
+	    }
+	    public void displayLivingSingle(){
+			System.out.println("\nWARNING--Sprint-4(US-31:List living single over 30 years of age):");
+			for (String ls : livingSingle) {
+	    		System.out.println(ls);
+			}
+	    	
+	    }
+	    
 
 	    private List<String> getValidTags() {
 	        List<String> validTag = new ArrayList<String>();

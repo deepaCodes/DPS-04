@@ -4,7 +4,7 @@ public class ParseMain {
 
 	public static void main(String[] args) {
 		
-		String path = "C:/Users/Shubhsz/Desktop/agile/DPS-04/agileProject/Sprint 1.ged";
+		String path = "W:/GitHub-Work/DPS-04/agileProject/Sprint 1.ged";
 /*
 		Change the path of file
 		String path ="W:/GitHub-Work/DPS-04/agileProject/Sprint 1.ged";
@@ -35,6 +35,8 @@ public class ParseMain {
 	        System.out.println();
 	        System.out.println("----------------------------------------List of Warnings or Errors------------------------------------------------");
 	        fp.displayWarnings();
+	        fp.displayLivingMarried();
+	        fp.displayLivingSingle();
 	        
 	    }
 }
