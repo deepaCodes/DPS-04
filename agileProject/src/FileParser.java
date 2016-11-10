@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Map.Entry;
+import java.util.concurrent.TimeUnit;
 import java.util.*;
 
 import com.sun.org.apache.bcel.internal.generic.INVOKEVIRTUAL;
@@ -313,6 +314,7 @@ public class FileParser {
 	            maleLastNames(fa.getValue());
 	            
 	            marriageAfter14(fa.getValue());
+	            siblingSpacing(fa.getValue());
 				
 	            System.out.print(husbName + "\t\t"
 	                    + wifeName + "\t"
@@ -350,8 +352,74 @@ public class FileParser {
 	            warnings.add("\nWARNING--Sprint-1(US-01:Date before current date): Death Date: "+sdf.format(individualInfo_.getBirth()) +" of "+individualInfo_.getName()+" occurs after current date"+sdf.format(currentDate));
 	        }
 	    }
-	        
 	    
+	  //Shubham Sprint 4 US 13 Sibling Spacing
+	    
+	    public void siblingSpacing (FamInfo fam )  {
+
+	    		List<String> list = fam.getChildId();
+
+	    		SimpleDateFormat format = new SimpleDateFormat("dd MMM yyyy");
+
+
+	    		for (int j = 0; j < fam.getChildId().size(); j++) {
+	    			Date birthDate_j= null;
+	    			IndividualInfo childList = indiMap.get(list.get(j));
+	    			if (childList.getBirth()!=null){
+	    				birthDate_j = childList.getBirth();
+	    				
+	    			}
+	    			for (int k = 0; k < fam.getChildId().size(); k++){
+	    				if (j!=k){
+	    					Date birthDate_k = null;
+	    					IndividualInfo innerChildList = indiMap.get(list.get(k));
+	    					if (innerChildList.getBirth()!=null){
+	    						birthDate_k = innerChildList.getBirth();
+	    						 
+	    						if (birthDate_j != null && birthDate_k !=null){
+	    							int diff =(int) getDateDiff(birthDate_j,birthDate_k,TimeUnit.DAYS);
+	    							if (diff > 2 && diff <243){
+	    					            warnings.add("\nWARNING--Sprint-13(US13: Birth dates of siblings) : "+ childList.getName() + " (" +childList.getId()+")" +" and "+ innerChildList.getName()  + " (" +innerChildList.getId()+")" +" should be more than 8 months or less than 2 days apart in family "+fam.getDiv());
+
+	    							}
+	    						}
+	    					}
+	    				}	
+	    			}
+	    		}
+
+	    	}
+
+	    	public long getDateDiff(Date date1, Date date2, TimeUnit timeUnit) {
+	    		long diffInMillies = date2.getTime() - date1.getTime();
+	    		return timeUnit.convert(diffInMillies,TimeUnit.MILLISECONDS);
+	    	}
+
+	    //Shubham Sprint 4 US 35 List Recent Births
+	    public void RecentBirths(IndividualInfo indiInfo) {
+
+	    	
+	    	try 
+	        {
+	            //SimpleDateFormat format = new SimpleDateFormat("dd MMM yyyy");
+
+	            Date birthDate = indiInfo.getBirth();
+	            //warnings.add("Test:"+birthDate);
+	            Date currentDate = new Date();
+
+	            long diff = currentDate.getTime() - birthDate.getTime();
+	            long diffHours = diff / (60 * 60 * 1000);
+	            long diffDays = diffHours / 24; // 48
+	            
+	            if (birthDate.compareTo(currentDate) < 0 && diffDays < 30) 
+	            {
+	            	warnings.add("\nWARNING--Sprint-35(US-35: List of Recent Birthdates) : " + " Individual is born in the last 30 days Id: " + indiInfo.getId() + " Name: " + indiInfo.getName()) ;
+
+	            }
+	        } catch (Exception ex) {
+
+	        }
+	    }
 	    //Shubham Sprint 3
 	 
 	    public void marriageAfter14(FamInfo fam) {
@@ -621,6 +689,7 @@ public class FileParser {
 				
 				//Shubham
 				checkUniqueNameBirth(value);
+				RecentBirths(value);
 
 	        }// for ends
 	        
