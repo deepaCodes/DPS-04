@@ -20,6 +20,7 @@ public class FileParser {
 	    private List<String> warnings = new ArrayList<>();
 	    private List<String> livingMarried = new ArrayList<String>();
 	    private List<String> livingSingle = new ArrayList<String>();
+	    
 	    public FileParser(String fp) {
 	        fPath = fp;
 
@@ -173,6 +174,7 @@ public class FileParser {
 	            String husbName =indiMap.get((fa.getValue().getHusbId())).getName() ;
 	            String wifeName =indiMap.get((fa.getValue().getWifeId())).getName() ;
 	            
+	            
 	            //Sprint-3 Divorce before death
 	            if(!(indiMap.get(fa.getValue().getHusbId()).isAlive()) || !(indiMap.get(fa.getValue().getWifeId()).isAlive())){
 	            	if((!(indiMap.get(fa.getValue().getHusbId()).isAlive())) &&(fa.getValue().getDiv()!=null)){
@@ -191,7 +193,8 @@ public class FileParser {
 	            		
 	            	}
 	            }
-
+	            
+	          
 	            //Sprint-1 Check for correct Genders for Husband and Wife
 	            if(indiMap.get((fa.getValue().getHusbId())).getGender().equals("F")){
 	                //System.err.println("WARNING-- Husband Gender of "+fa.getValue().getHusbId() +" cannot be female");
@@ -199,7 +202,6 @@ public class FileParser {
 	            }
 
 	            if(indiMap.get((fa.getValue().getWifeId())).getGender().equals("M")){
-	                //System.err.println("WARNING-- Wife Gender cannot be male");
 	                warnings.add("\nWARNING--Sprint-1(US-21:Correct gender for role): Wife Gender of "+fa.getValue().getWifeId()+" belonging to family "+fa.getValue().getFid() +" cannot be male");
 
 	            }
@@ -218,6 +220,16 @@ public class FileParser {
 	            	
 	            }
 	            
+	            //Sprint-4 US-33 List of Orphans
+	            if(fa.getValue().getChildId()!=null && indiMap.get(fa.getValue().getHusbId())!=null && indiMap.get(fa.getValue().getWifeId())!=null){
+	            	for(String child: fa.getValue().getChildId()){
+	            		IndividualInfo i= indiMap.get(child);
+	            		
+	            		if(i.getAge()<18 && !(indiMap.get(fa.getValue().getHusbId()).isAlive()) && !(indiMap.get(fa.getValue().getWifeId()).isAlive()) ){
+	            			warnings.add("\nWARNING--Sprint-4(US-33:List of Orphans): "+i.getName()+" is orphan." );
+	            		}
+	            	}
+	            }
 	                        
 	            //Sprint-2 US08 Birth before marriage of parents
 	            if(fa.getValue().getChildId()!=null){
@@ -229,6 +241,8 @@ public class FileParser {
 	            		}
 	            	}
 	            }
+	            
+	          
 	            
 	          //Sprint-2 US08 Birth before divorce of parents
 	            if(fa.getValue().getChildId()!=null){
@@ -277,10 +291,15 @@ public class FileParser {
 	            	warnings.add("\nWARNING--Sprint-3(US-15:Family ("+fa.getValue().getFid()+") should have fewer than 15 siblings." );
 	            	}
 	            
-	            //Sprint-3 US33 by Pooja Kamat
+	            //Sprint-3 US34 by Pooja Kamat
 	            if(indiMap.get(fa.getValue().getHusbId()).getAge() >= 2*indiMap.get(fa.getValue().getWifeId()).getAge() || 2*indiMap.get(fa.getValue().getHusbId()).getAge() <= indiMap.get(fa.getValue().getWifeId()).getAge()){
 	            	warnings.add("\nWARNING--Sprint-3(US-34:Large age difference) Husband: " + indiMap.get(fa.getValue().getHusbId()).getName() +" and Wife: " + indiMap.get(fa.getValue().getWifeId()).getName());
 	            }
+	            
+	            /*if (indiMap.get(fa.getValue().getChildId()).getAge() <= 18.0 && (indiMap.get(fa.getValue().getHusbId()).getDeath()!= null && indiMap.get(fa.getValue().getWifeId()).getDeath()!= null) {
+	            	warnings.add("\nWARNING--Sprint-4(US-33:Family ("+indiMap.get(fa.getValue().getChildId()).getName()+") is orphan." );
+	            	
+	            }*/
 
 	            
 	            //Sprint-1 US01- check for Date before current date by Pooja Kamat
@@ -307,7 +326,6 @@ public class FileParser {
 	            checkMarriageBeforeDivorce(fa.getValue());
 				
 				checkMarriageBeforeBirth(fa.getValue());
-				//checkDeathBeforeBirth();
 	            checkDeathBeforeBirth(indiMap.get((fa.getValue().getWifeId())));
 	            checkDeathBeforeBirth(indiMap.get((fa.getValue().getHusbId())));
 	            
@@ -360,16 +378,12 @@ public class FileParser {
 	    public void siblingSpacing (FamInfo fam )  {
 
 	    		List<String> list = fam.getChildId();
-
 	    		SimpleDateFormat format = new SimpleDateFormat("dd MMM yyyy");
-
-
 	    		for (int j = 0; j < fam.getChildId().size(); j++) {
 	    			Date birthDate_j= null;
 	    			IndividualInfo childList = indiMap.get(list.get(j));
 	    			if (childList.getBirth()!=null){
 	    				birthDate_j = childList.getBirth();
-	    				
 	    			}
 	    			for (int k = 0; k < fam.getChildId().size(); k++){
 	    				if (j!=k){
@@ -381,7 +395,7 @@ public class FileParser {
 	    						if (birthDate_j != null && birthDate_k !=null){
 	    							int diff =(int) getDateDiff(birthDate_j,birthDate_k,TimeUnit.DAYS);
 	    							if (diff > 2 && diff <243){
-	    					            warnings.add("\nWARNING--Sprint-4(US13: Birth dates of siblings) : "+ childList.getName() + " (" +childList.getId()+")" +" and "+ innerChildList.getName()  + " (" +innerChildList.getId()+")" +" should be more than 8 months or less than 2 days apart ");
+	    					            warnings.add("\nWARNING--Sprint-4(US-13: Birth dates of siblings) : "+ childList.getName() + " (" +childList.getId()+")" +" and "+ innerChildList.getName()  + " (" +innerChildList.getId()+")" +" should be more than 8 months or less than 2 days apart ");
 
 	    							}
 	    						}
@@ -400,30 +414,40 @@ public class FileParser {
 	    //Shubham Sprint 4 US 35 List Recent Births
 	    public void RecentBirths(IndividualInfo indiInfo) {
 
-	    	
 	    	try 
 	        {
-	            //SimpleDateFormat format = new SimpleDateFormat("dd MMM yyyy");
-
 	            Date birthDate = indiInfo.getBirth();
-	            //warnings.add("Test:"+birthDate);
 	            Date currentDate = new Date();
-
 	            long diff = currentDate.getTime() - birthDate.getTime();
 	            long diffHours = diff / (60 * 60 * 1000);
 	            long diffDays = diffHours / 24; // 48
-	            
 	            if (birthDate.compareTo(currentDate) < 0 && diffDays < 30) 
 	            {
-	            	warnings.add("\nWARNING--Sprint-4(US-35: List of Recent Birthdates) : " + " Individual is born in the last 30 days Id: " + indiInfo.getId() + " Name: " + indiInfo.getName()) ;
-
+	            	warnings.add("\nWARNING--Sprint-4(US-35: List of Recent Birthdates) :"+" Individual is born in the last 30 days Id: " + indiInfo.getId() + " Name: " + indiInfo.getName()) ;
 	            }
 	        } catch (Exception ex) {
-
 	        }
 	    }
-	    //Shubham Sprint 3
+	   
 	 
+	    //Sprint-4 US-36 by Pooja Kamat
+	    public void RecentDeaths(IndividualInfo indiInfo) {
+	    	try 
+	        {
+	            Date deathDate = indiInfo.getDeath();
+	            Date currentDate = new Date();
+	            long diff = currentDate.getTime() - deathDate.getTime();
+	            long diffHours = diff / (60 * 60 * 1000);
+	            long diffDays = diffHours / 24; // 48
+	            if (deathDate.compareTo(currentDate) < 0 && diffDays < 30) 
+	            {
+	            	warnings.add("\nWARNING--Sprint-4(US-36: List of Recent Deathdates) :"+"Individual died in the last 30 days Id: " + indiInfo.getId() + " Name: " + indiInfo.getName()) ;
+	            }
+	        } catch (Exception ex) {
+	        }
+	    }
+	    
+	    //Shubham Sprint 3 
 	    public void marriageAfter14(FamInfo fam) {
 	    	//warnings.add("Hallelujah");
 	    	Date marr_date = fam.getMarr();
@@ -431,23 +455,15 @@ public class FileParser {
 	    	Date husb_birthDate = indiMap.get(fam.getHusbId()).getBirth();
 	    	
             try {
-                //SimpleDateFormat format = new SimpleDateFormat("dd MMM yyyy");
-
-                //Date wifebirthDate = format.parse(wife_birthDate.toString());
-                //Date husbandbirthDate = format.parse(husb_birthDate.toString());
-                //Date marriageDate = format.parse(marr_date.toString());
-
                 long wifediff = marr_date.getTime() - wife_birthDate.getTime();
                 long wifediffHours = wifediff / (60 * 60 * 1000);
                 long wifediffDays = wifediffHours / 24; // 48
-                long wifediffYear = wifediffDays / 365;
-                //warnings.add("Wife age at Marriage:"+wifediffYear);
-                
+                long wifediffYear = wifediffDays / 365;        
                 long husbdiff = marr_date.getTime() - husb_birthDate.getTime();
                 long husbdiffHours = husbdiff / (60 * 60 * 1000);
                 long husbdiffDays = husbdiffHours / 24; // 48
                 long husbdiffYear = husbdiffDays / 365;
-                //warnings.add("Husband age at Marriage:"+husbdiffYear);
+                
                 if (wifediffYear < 14) {
                 	warnings.add("\nWARNING--Sprint-3(US-10:Marriage after 14): Marriage should occur after 14 years for "+ indiMap.get(fam.getWifeId()).getName() +" (" +indiMap.get(fam.getWifeId()).getId() +") "+ "in Family " +fam.getFid());
                 }
@@ -463,37 +479,27 @@ public class FileParser {
 	    public void maleLastNames(FamInfo fam) 
 	    {
             List<String> nameStringList = new ArrayList<String>();
-            
             nameStringList.add(indiMap.get(fam.getHusbId()).getLastName());
 
             for (int i = 0; i < fam.getChildId().size(); i++) {
-            	//warnings.add("Gender:"+indiMap.get(fam.getChildId().get(i)).getGender());
                 if (indiMap.get(fam.getChildId().get(i)).getGender().equals("M"))
                     nameStringList.add(indiMap.get(fam.getChildId().get(i)).getLastName());
             }
-            //warnings.add("Size of list:"+nameStringList.toString());
-            
+         
             for (int i = 0; i < nameStringList.size(); i++) {
                 for (int j = i + 1; j < nameStringList.size(); j++) {
                     if (!nameStringList.get(i).equals(nameStringList.get(j)))
                     	warnings.add("\nWARNING--Sprint-3(US-16:Male last names): " +nameStringList.get(i) + " and " +nameStringList.get(j) +" of family " +fam.getFid()+ " have different last names");
-
-                        
                 }
             }
-            
         }
-	    
-	    
-	    
+
 		//Shubham Sprint 2
 		private void checkUniqueNameBirth(IndividualInfo ind) 
 		{
 	        String indGivenName = (String)ind.getName();
-	        //String indSurName = ind.getSurName();
 	        Date indBirth = (Date)ind.getBirth();
 			String indid = (String)ind.getId();
-			
 			Set set = indiMap.entrySet();
 			Iterator it = set.iterator();
 	        while(it.hasNext())
@@ -502,13 +508,10 @@ public class FileParser {
 				IndividualInfo value = (IndividualInfo)me.getValue();
 				
 	            String givenName = (String)value.getName();
-	            //String surName = individuals.get(i).getSurName();
 	            Date birth = (Date)value.getBirth();
 	            String id = (String)value.getId();
-	            //System.out.println("hiiii");
 	            if (indGivenName!= null && indBirth != null && givenName!=null && birth!=null && !indid.equals(id) )
 				{
-	            	//System.out.println(indBirth+indGivenName+givenName+birth);
 	            	String dt1 = indBirth.toString();
 	            	String dt2 = birth.toString();
 					if (indGivenName.equalsIgnoreCase(givenName) && dt1.equalsIgnoreCase(dt2)) 
@@ -517,18 +520,14 @@ public class FileParser {
 					}
 				}
 	        }
-	        //return true;
 	    }
 		
 		//Shubham Sprint-2
 		public void sibingsShouldNotMarry (FamInfo fam)
 		{
 			List<String> childList = (fam.getChildId());
-			//System.out.println("Size of childList:"+childList.size());
-			//Collections.sort(childList);
 			Set set = familyMap.entrySet();
 			Iterator it = set.iterator();
-			//Entry<String, IndividualInfo> i : indiMap.entrySet()
 			for(Entry<String, Family> i:familyMap.entrySet())
 			{
 				Family fmly = i.getValue();
@@ -551,9 +550,7 @@ public class FileParser {
 				{
 					warnings.add("\nWARNING--Sprint-2(US-18:Siblings as couple): Family ID "+fmly.getfId()+" The siblings are couple");
 				}
-			}
-			
-			
+			}	
 		}
 		
 		
@@ -593,8 +590,6 @@ public class FileParser {
 		
 		public int findAge(Date target){
 			Calendar currDate = Calendar.getInstance();
-			// System.out.println(currDate);
-			 		 
 			 int age = currDate.get(Calendar.YEAR) - target.getYear();
 			return age-1900;
 		}
@@ -617,11 +612,12 @@ public class FileParser {
 	            		livingMarried.add("ID: "+value.getId()+"\t\tName: "+value.getName());
 	            }
 	            
+	   
 		     //Sprint-4 List living single
 	            if(value.isAlive() && age>30 &&(value.getSpouseFamilyList().size()==0)){
            		livingSingle.add("ID: "+value.getId()+"\t\tName: "+value.getName());
            }
-	           
+	            
 	            
 	            //List all the dead people
 	            if(!value.isAlive()){
@@ -703,6 +699,9 @@ public class FileParser {
 				//Shubham
 				checkUniqueNameBirth(value);
 				RecentBirths(value);
+				
+				//Pooja
+				RecentDeaths(value);
 
 	        }// for ends
 	        
@@ -721,6 +720,7 @@ public class FileParser {
 	    		System.out.println(lm);
 			}
 	    }
+
 	    public void displayLivingSingle(){
 			System.out.println("\nWARNING--Sprint-4(US-31:List living single over 30 years of age):");
 			for (String ls : livingSingle) {
